@@ -584,9 +584,13 @@ class GameEngine:
             self.location_manager.visit_location(destination_id)
             print(f"You travel {direction}...")
             
+            # Quest objective: Explore market
+            if destination_id == "checkpoint_charlie" and "first_steps" in self.state.quests:
+                self.quest_manager.complete_objective("first_steps", "explore_market")
+            
             # Load new location state if it exists
             if destination_id in self.state.location_states:
-                from location import Location
+                from fallout_berlin.location import Location
                 loc = Location.from_dict(self.state.location_states[destination_id])
                 self.location_manager.add_location(loc)
 
@@ -777,11 +781,12 @@ class GameEngine:
             return
         
         npc_name = ' '.join(args).lower()
-        # For now, simple NPC lookup
-        # TODO: Implement proper NPC system
         
-        # Example: trader at checkpoint charlie
-        if 'trader' in npc_name and self.state.current_location == 'checkpoint_charlie':
+        # Example: Hans at checkpoint charlie
+        if ('hans' in npc_name or 'trader' in npc_name) and self.state.current_location == 'checkpoint_charlie':
+            # Complete quest objective if player talks to Hans
+            if "first_steps" in self.state.quests:
+                self.quest_manager.complete_objective("first_steps", "talk_hans")
             self._start_dialogue('trader_charlie')
         else:
             print(f"You don't see {npc_name} here.")
@@ -830,6 +835,10 @@ class GameEngine:
             choice = int(command)
             if 1 <= choice <= len(options):
                 option = options[choice - 1]
+                
+                # Check for faction info quest objective
+                if option.next_node == "factions" and "first_steps" in self.state.quests:
+                    self.quest_manager.complete_objective("first_steps", "learn_factions")
                 
                 # Execute action if any
                 if option.action:

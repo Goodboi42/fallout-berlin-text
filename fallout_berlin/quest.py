@@ -3,11 +3,13 @@ Quest System
 Handles quests, objectives, and quest tracking
 """
 
+import json
+import os
 from typing import Dict, List, Optional, Callable, Any
 from enum import Enum
 
-
 class QuestState(Enum):
+
     """Quest states"""
     NOT_STARTED = "not_started"
     ACTIVE = "active"
@@ -145,21 +147,29 @@ class QuestManager:
         self._initialize_quests()
     
     def _initialize_quests(self):
-        """Initialize some example quests"""
-        # Example quest: First Steps
-        first_steps = Quest(
-            "first_steps",
-            "First Steps",
-            "You've arrived in the wasteland. Time to learn the basics of survival."
-        )
-        first_steps.add_objective(QuestObjective("Explore Checkpoint Charlie Market"))
-        first_steps.add_objective(QuestObjective("Talk to a trader"))
-        first_steps.add_objective(QuestObjective("Learn about the factions"))
-        first_steps.rewards = {
-            'experience': 100,
-            'caps': 50
-        }
-        self.quests["first_steps"] = first_steps
+        """Initialize quests from JSON data"""
+        data_path = os.path.join(os.path.dirname(__file__), 'data', 'quests.json')
+        if not os.path.exists(data_path):
+            # Fallback to minimal hardcoded if file missing
+            first_steps = Quest("first_steps", "First Steps", "Learn to survive.")
+            first_steps.add_objective(QuestObjective("Explore Checkpoint Charlie"))
+            self.quests["first_steps"] = first_steps
+            return
+
+        try:
+            with open(data_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                for q_id, q_data in data.items():
+                    quest = Quest(q_id, q_data['title'], q_data['description'])
+                    for obj_data in q_data.get('objectives', []):
+                        obj = QuestObjective(obj_data['description'], obj_data.get('id'))
+                        obj.optional = obj_data.get('optional', False)
+                        quest.add_objective(obj)
+                    quest.rewards = q_data.get('rewards', {})
+                    self.add_quest(quest)
+        except Exception as e:
+            print(f"Error loading quests: {e}")
+
     
     def add_quest(self, quest: Quest):
         """Add a quest"""
