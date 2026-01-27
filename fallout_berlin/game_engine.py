@@ -264,13 +264,19 @@ class GameEngine:
         input("\nPress Enter to continue...")
 
     def _character_creation(self):
-        """Handle character creation"""
+        """Handle character creation with robust input validation"""
         print("\n=== CHARACTER CREATION ===\n")
         
         # Get name
-        name = input("What is your name? ").strip()
-        if not name:
-            name = "Wanderer"
+        while True:
+            try:
+                name = input("What is your name? ").strip()
+                if name:
+                    break
+                print("You must enter a name, Wanderer.")
+            except EOFError:
+                name = "Wanderer"
+                break
         
         self.player = Player(name)
         
@@ -285,6 +291,7 @@ class GameEngine:
         while True:
             try:
                 choice = input("\nEnter your choice (1-{}): ".format(len(origins))).strip()
+                if not choice: continue
                 choice_num = int(choice)
                 if 1 <= choice_num <= len(origins):
                     origin_key = origins[choice_num - 1]
@@ -293,9 +300,12 @@ class GameEngine:
                     print(f"\nYou are a {origin_data['name']}.")
                     break
                 else:
-                    print("Invalid choice. Please try again.")
-            except ValueError:
-                print("Please enter a number.")
+                    print(f"Please enter a number between 1 and {len(origins)}.")
+            except (ValueError, IndexError):
+                print("Invalid input. Please enter the number corresponding to your choice.")
+            except EOFError:
+                self.player.set_origin(origins[0])
+                break
         
         # S.P.E.C.I.A.L. point allocation
         print("\n=== S.P.E.C.I.A.L. STATS ===")
@@ -309,23 +319,43 @@ class GameEngine:
         while points_remaining > 0:
             print(f"\nPoints remaining: {points_remaining}")
             print("Current stats:")
-            for stat in stats:
+            for i, stat in enumerate(stats, 1):
                 value = getattr(self.player, stat)
-                print(f"  {stat.capitalize()}: {value}")
+                print(f"  {i}. {stat.capitalize()}: {value}")
             
-            stat_name = input("\nWhich stat would you like to increase? ").strip().lower()
-            if stat_name in stats:
-                current_value = getattr(self.player, stat_name)
-                if current_value >= 10:
-                    print(f"{stat_name.capitalize()} is already at maximum (10).")
+            try:
+                stat_input = input("\nWhich stat would you like to increase? (Name or Number): ").strip().lower()
+                if not stat_input: continue
+                
+                matched_stat = None
+                if stat_input.isdigit():
+                    idx = int(stat_input) - 1
+                    if 0 <= idx < len(stats):
+                        matched_stat = stats[idx]
                 else:
-                    self.player.set_special(stat_name, current_value + 1)
-                    points_remaining -= 1
-            else:
-                print("Invalid stat name. Please try again.")
+                    for s in stats:
+                        if s.startswith(stat_input):
+                            matched_stat = s
+                            break
+                
+                if matched_stat:
+                    current_value = getattr(self.player, matched_stat)
+                    if current_value >= 10:
+                        print(f"{matched_stat.capitalize()} is already at maximum (10).")
+                    else:
+                        self.player.set_special(matched_stat, current_value + 1)
+                        points_remaining -= 1
+                        print(f"[+] {matched_stat.capitalize()} increased.")
+                else:
+                    print("Invalid stat. Type the name (e.g., 'Strength') or the number.")
+            except EOFError:
+                break
         
         print("\n" + self.player.get_stat_summary())
-        input("\nPress Enter to begin your journey...")
+        try:
+            input("\nPress Enter to begin your journey...")
+        except EOFError:
+            pass
     
     def game_loop(self):
         """Main game loop"""
@@ -668,12 +698,14 @@ class GameEngine:
                 print(f"  {faction}: {standing} ({rep})")
     
     def _handle_look(self, args: List[str]):
-        """Handle look/examine command"""
+        """Handle look/examine command with validation"""
+        location = self.location_manager.get_location(self.state.current_location)
+        if not location:
+            return
+
         if not args:
             # Look at current location
-            location = self.location_manager.get_location(self.state.current_location)
-            if location:
-                print(location.get_description(detailed=True))
+            print(location.get_description(detailed=True))
             return
 
         target = ' '.join(args).lower()
@@ -686,33 +718,30 @@ class GameEngine:
                 print(item.description)
                 print(f"Weight: {item.weight} | Value: {item.value}")
                 if hasattr(item, 'damage'):
-                    print(f"Damage: {item.damage} | Type: {item.weapon_type} | Skill: {item.skill}")
+                    print(f"Damage: {item.damage} | Type: {getattr(item, 'weapon_type', 'N/A')} | Skill: {getattr(item, 'skill', 'N/A')}")
                 elif hasattr(item, 'damage_resistance'):
                     print(f"Damage Resistance: {item.damage_resistance}")
                 return
 
-        # Check location
-        location = self.location_manager.get_location(self.state.current_location)
-        if location:
-            # Check items on ground
-            item = location.find_item(target)
-            if item:
-                print(f"\n[{item.name} (on the ground)]")
-                print(item.description)
-                return
-            
-            # Check enemies
-            enemy = location.find_enemy(target)
-            if enemy:
-                print(f"\n[{enemy.name}]")
-                print(enemy.description)
-                print(f"Level: {enemy.level} | HP: {enemy.hp}/{enemy.max_hp}")
-                return
-            
-            # Check for NPCs or features (simplified)
-            if target in [npc.lower() for npc in location.npcs]:
-                print(f"\nYou see {target}. Maybe you should 'talk' to them.")
-                return
+        # Check items on ground
+        item = location.find_item(target)
+        if item:
+            print(f"\n[{item.name} (on the ground)]")
+            print(item.description)
+            return
+        
+        # Check enemies
+        enemy = location.find_enemy(target)
+        if enemy:
+            print(f"\n[{enemy.name}]")
+            print(enemy.description)
+            print(f"Level: {enemy.level} | HP: {enemy.hp}/{enemy.max_hp}")
+            return
+        
+        # Check for NPCs
+        if target in [npc.lower() for npc in location.npcs]:
+            print(f"\nYou see {target}. Maybe you should 'talk' to them.")
+            return
 
         print(f"You don't see any '{target}' here.")
     
@@ -864,7 +893,65 @@ class GameEngine:
     def _show_quests(self):
         """Show quest log"""
         print(self.quest_manager.get_quests_display(self.state))
+
+    def _save_game(self):
+        """Save the game with input handling"""
+        print("\n=== SAVE GAME ===")
+        print("Available slots (type a name or press Enter for default):")
+        saves = self.state.list_saves()
+        for s in saves:
+            print(f" - {s['filename']} ({s['date']})")
+            
+        try:
+            filename = input("\nSave name: ").strip()
+            if not filename:
+                filename = "savegame.json"
+            if not filename.endswith('.json'):
+                filename += '.json'
+            
+            filepath = self.state.save_game(filename)
+            print(f"\n[✓] Game saved to {filepath}")
+        except (EOFError, KeyboardInterrupt):
+            print("\nSave cancelled.")
     
+    def _load_game(self):
+        """Load a game with robust selection"""
+        saves = self.state.list_saves()
+        if not saves:
+            print("\n[!] No save games found.")
+            return
+        
+        print("\n=== LOAD GAME ===")
+        for i, save in enumerate(saves, 1):
+            print(f"{i}. {save['filename']} - {save['date']} - {save['location']}")
+        print(f"{len(saves) + 1}. Cancel")
+        
+        try:
+            choice = input("\nEnter slot number: ").strip()
+            if not choice: return
+            
+            choice_num = int(choice)
+            if choice_num == len(saves) + 1:
+                return
+                
+            if 1 <= choice_num <= len(saves):
+                filename = saves[choice_num - 1]['filename']
+                if self.state.load_game(filename):
+                    print(f"\n[✓] Game loaded from {filename}")
+                    # Re-sync quests
+                    self.quest_manager.quests = self.state.quests
+                    self.running = True
+                    # Re-display location
+                    self._display_location()
+                else:
+                    print("\n[!] Failed to load game.")
+            else:
+                print("\n[!] Invalid slot number.")
+        except (ValueError, IndexError):
+            print("\n[!] Please enter a valid number.")
+        except EOFError:
+            pass
+
     def _show_help(self):
         """Show help menu"""
         print("""
@@ -908,10 +995,8 @@ During dialogue, enter the number of your choice.
         print(f"Game saved to {filepath}")
     
     def _save_game_prompt(self):
-        """Prompt to save before quitting"""
-        response = input("Save before quitting? (y/n): ").strip().lower()
-        if response == 'y':
-            self._save_game()
+        """Prompt to save before quitting (Legacy, updated by _quit_game)"""
+        pass
     
     def _load_game(self):
         """Load a game"""
@@ -942,8 +1027,16 @@ During dialogue, enter the number of your choice.
             print("Please enter a number.")
     
     def _quit_game(self):
-        """Quit the game"""
-        self._save_game_prompt()
+        """Quit the game with a final prompt"""
+        try:
+            response = input("\nSave before quitting? (y/n/cancel): ").strip().lower()
+            if response == 'y':
+                self._save_game()
+            elif response == 'cancel' or response == 'c':
+                return
+        except EOFError:
+            pass
+            
         print("\nThanks for playing Fallout: Berlin!")
         self.running = False
         sys.exit(0)

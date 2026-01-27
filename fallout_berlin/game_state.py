@@ -28,11 +28,20 @@ class GameState:
         
     def to_dict(self) -> Dict[str, Any]:
         """Convert game state to dictionary for saving"""
+        # Ensure quest objects are converted to dicts correctly
+        # The manager handles the master objects, but state needs to store them
+        quest_data = {}
+        for k, v in self.quests.items():
+            if hasattr(v, 'to_dict'):
+                quest_data[k] = v.to_dict()
+            else:
+                quest_data[k] = v # Already a dict
+                
         return {
             'player': self.player.to_dict() if self.player else None,
             'current_location': self.current_location,
             'faction_reputation': self.faction_reputation,
-            'quests': {k: v.to_dict() for k, v in self.quests.items()},
+            'quests': quest_data,
             'world_flags': self.world_flags,
             'inventory': self.inventory.to_dict() if hasattr(self.inventory, 'to_dict') else [item.to_dict() for item in (self.inventory if isinstance(self.inventory, list) else [])],
             'game_time': self.game_time,
