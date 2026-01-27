@@ -47,20 +47,10 @@ class GameState:
     def from_dict(self, data: Dict[str, Any]):
         """Load game state from dictionary"""
         # Import here to avoid circular dependencies
-        try:
-            from player import Player
-            from quest import Quest
-            from item import Item
-            from inventory import Inventory
-        except ImportError:
-            # Fallback for when running as script
-            import sys
-            import os
-            sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
-            from fallout_berlin.player import Player
-            from fallout_berlin.quest import Quest
-            from fallout_berlin.item import Item
-            from fallout_berlin.inventory import Inventory
+        from fallout_berlin.player import Player
+        from fallout_berlin.quest import Quest
+        from fallout_berlin.item import Item
+        from fallout_berlin.inventory import Inventory
         
         if data.get('player'):
             self.player = Player.from_dict(data['player'])

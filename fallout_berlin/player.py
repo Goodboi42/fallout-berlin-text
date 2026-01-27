@@ -85,7 +85,7 @@ class Player:
         self.carry_weight = 0
         
         # Equipment
-        from item import Weapon, Armor
+        from fallout_berlin.item import Weapon, Armor
         self.equipped_weapon: Optional[Weapon] = None
         self.equipped_armor: Optional[Armor] = None
 
@@ -300,7 +300,7 @@ class Player:
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'Player':
         """Create player from dictionary"""
-        from item import Weapon, Armor
+        from fallout_berlin.item import Weapon, Armor
         player = cls(data.get('name', 'Player'))
         player.origin = data.get('origin')
         player.strength = data.get('strength', 5)

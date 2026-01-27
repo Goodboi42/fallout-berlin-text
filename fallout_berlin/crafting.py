@@ -1,7 +1,7 @@
 import json
 import os
 from typing import Dict, List, Optional
-from item import create_item
+from fallout_berlin.item import create_item
 
 class CraftingManager:
     """Manages crafting recipes and item creation"""

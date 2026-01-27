@@ -6,7 +6,7 @@ Handles player inventory, item management, and weight calculations
 from typing import List, Optional, Dict
 
 # Import Item here to avoid circular dependencies
-from item import Item
+from fallout_berlin.item import Item
 
 
 class Inventory:
@@ -133,7 +133,7 @@ class Inventory:
     
     def from_dict(self, data: Dict):
         """Load inventory from dictionary"""
-        from item import Item
+        from fallout_berlin.item import Item
         self.items = [Item.from_dict(item_data) for item_data in data.get('items', [])]
         self.max_weight = data.get('max_weight', 150)
     

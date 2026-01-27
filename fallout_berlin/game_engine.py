@@ -6,15 +6,15 @@ Handles the game loop, command parsing, and UI
 import os
 import sys
 from typing import Optional, List, Dict
-from game_state import GameState
-from player import Player
-from inventory import Inventory
-from location import LocationManager
-from dialogue import DialogueManager
-from quest import QuestManager
-from item import create_item, ITEM_DATABASE
-from enemy import create_enemy, Enemy
-from crafting import CraftingManager
+from fallout_berlin.game_state import GameState
+from fallout_berlin.player import Player
+from fallout_berlin.inventory import Inventory
+from fallout_berlin.location import LocationManager
+from fallout_berlin.dialogue import DialogueManager
+from fallout_berlin.quest import QuestManager
+from fallout_berlin.item import create_item, ITEM_DATABASE
+from fallout_berlin.enemy import create_enemy, Enemy
+from fallout_berlin.crafting import CraftingManager
 import random
 
 
@@ -368,7 +368,7 @@ class GameEngine:
             print(f"You don't have {item_name}.")
             return
         
-        from item import Weapon, Armor
+        from fallout_berlin.item import Weapon, Armor
         if isinstance(item, Weapon):
             # Unequip current weapon if any
             if self.state.player.equipped_weapon:
@@ -758,7 +758,7 @@ class GameEngine:
     
     def _use_consumable(self, item):
         """Use a consumable item"""
-        from item import Consumable
+        from fallout_berlin.item import Consumable
         if not isinstance(item, Consumable):
             return
         

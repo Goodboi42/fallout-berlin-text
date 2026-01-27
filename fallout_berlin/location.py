@@ -6,8 +6,8 @@ Handles locations, navigation, and area descriptions
 import json
 import os
 from typing import Dict, List, Optional, Callable, Any
-from item import Item, create_item
-from enemy import Enemy, create_enemy
+from fallout_berlin.item import Item, create_item
+from fallout_berlin.enemy import Enemy, create_enemy
 
 class Location:
     """Represents a location in the game world"""
@@ -147,8 +147,8 @@ class Location:
     @classmethod
     def from_dict(cls, data: Dict) -> 'Location':
         """Create location from dictionary"""
-        from item import Item
-        from enemy import Enemy
+        from fallout_berlin.item import Item
+        from fallout_berlin.enemy import Enemy
         
         location = cls(
             data['name'],

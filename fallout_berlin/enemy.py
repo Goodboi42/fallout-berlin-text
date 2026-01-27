@@ -7,7 +7,7 @@ import json
 import os
 import random
 from typing import Dict, List, Optional, Any
-from item import Item, create_item
+from fallout_berlin.item import Item, create_item
 
 class Enemy:
     """Represents an enemy in the game"""
