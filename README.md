@@ -1,5 +1,7 @@
 # Fallout: Berlin - Text-Based Adventure
-!(fallout-berlin-cover-1.png)
+<p align="center">
+  <img src="./fallout-berlin-cover-1.png" alt="Project cover" width="1200"/>
+</p>
 
 > "Berlin was broken before the bombs fell — and reshaped by them afterward."
 
