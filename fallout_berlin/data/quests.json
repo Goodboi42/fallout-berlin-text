@@ -1,0 +1,65 @@
+{
+  "first_steps": {
+    "title": "First Steps in the Ash City",
+    "description": "You've survived the vault exit. Now you need to find your footing in the remains of Berlin.",
+    "objectives": [
+      {
+        "id": "explore_market",
+        "description": "Explore the Checkpoint Charlie Market",
+        "optional": false
+      },
+      {
+        "id": "talk_hans",
+        "description": "Talk to Hans the Trader",
+        "optional": false
+      },
+      {
+        "id": "learn_factions",
+        "description": "Learn about the Iron Ring and Feld Commune",
+        "optional": false
+      }
+    ],
+    "rewards": {
+      "experience": 150,
+      "caps": 50
+    }
+  },
+  "currywurst_run": {
+    "title": "The Currywurst Cravings",
+    "description": "A hungry scavenger at Kotti is dreaming of pre-war flavor. Or at least the post-war approximation.",
+    "objectives": [
+      {
+        "id": "get_currywurst",
+        "description": "Acquire an Icy Currywurst",
+        "optional": false
+      },
+      {
+        "id": "deliver_currywurst",
+        "description": "Deliver the snack to 'Hungry Klaus' at Kotti",
+        "optional": false
+      }
+    ],
+    "rewards": {
+      "experience": 200,
+      "items": ["scrap_metal", "scrap_metal"]
+    }
+  },
+  "u1_clearance": {
+    "title": "Cleaning the U1",
+    "description": "The Schattenvolk want to expand their tunnels, but a nest of ghouls is blocking the U1 line.",
+    "objectives": [
+      {
+        "id": "clear_tunnels",
+        "description": "Kill 3 Feral Ghouls in the U-Bahn Tunnels",
+        "optional": false
+      }
+    ],
+    "rewards": {
+      "experience": 500,
+      "caps": 200,
+      "faction_rep": {
+        "Schattenvolk": 20
+      }
+    }
+  }
+}
