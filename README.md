@@ -1,4 +1,5 @@
 # Fallout: Berlin - Text-Based Adventure
+!(fallout-berlin-cover-1.png)
 
 > "Berlin was broken before the bombs fell — and reshaped by them afterward."
 
