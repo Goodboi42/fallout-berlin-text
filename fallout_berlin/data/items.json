@@ -1,0 +1,214 @@
+{
+  "10mm_pistol": {
+    "name": "10mm Pistol",
+    "description": "A reliable pre-war pistol. Standard issue for many wastelanders.",
+    "class": "Weapon",
+    "damage": 12,
+    "weapon_type": "ranged",
+    "skill": "Small Guns",
+    "ammo_type": "10mm",
+    "weight": 3.0,
+    "value": 150
+  },
+  "pipe_pistol": {
+    "name": "Pipe Pistol",
+    "description": "A crude homemade pistol. Better than nothing.",
+    "class": "Weapon",
+    "damage": 8,
+    "weapon_type": "ranged",
+    "skill": "Small Guns",
+    "ammo_type": "10mm",
+    "weight": 2.5,
+    "value": 50
+  },
+  "knife": {
+    "name": "Knife",
+    "description": "A simple blade. Useful for cutting and stabbing.",
+    "class": "Weapon",
+    "damage": 5,
+    "weapon_type": "melee",
+    "skill": "Melee Weapons",
+    "weight": 0.5,
+    "value": 10
+  },
+  "laser_rifle": {
+    "name": "Laser Rifle",
+    "description": "Pre-war energy weapon. Powerful but requires fusion cells.",
+    "class": "Weapon",
+    "damage": 25,
+    "weapon_type": "energy",
+    "skill": "Energy Weapons",
+    "ammo_type": "fusion_cell",
+    "weight": 8.0,
+    "value": 500
+  },
+  "vault_suit": {
+    "name": "Vault Suit",
+    "description": "Standard Vault-Tec jumpsuit. Provides minimal protection but is comfortable.",
+    "class": "Armor",
+    "damage_resistance": 5,
+    "weight": 2.0,
+    "value": 50
+  },
+  "leather_armor": {
+    "name": "Leather Armor",
+    "description": "Reinforced leather armor. Common in the wasteland.",
+    "class": "Armor",
+    "damage_resistance": 15,
+    "weight": 8.0,
+    "value": 200
+  },
+  "raider_armor": {
+    "name": "Raider Armor",
+    "description": "Jury-rigged armor made from scrap. Ugly but functional.",
+    "class": "Armor",
+    "damage_resistance": 12,
+    "weight": 10.0,
+    "value": 100
+  },
+  "stimpak": {
+    "name": "Stimpak",
+    "description": "Pre-war medical device. Heals wounds instantly.",
+    "class": "Consumable",
+    "effect_type": "heal",
+    "effect_value": 50,
+    "weight": 0.1,
+    "value": 25
+  },
+  "radaway": {
+    "name": "RadAway",
+    "description": "Removes radiation from the body.",
+    "class": "Consumable",
+    "effect_type": "rad_heal",
+    "effect_value": 100,
+    "weight": 0.1,
+    "value": 30
+  },
+  "rad_x": {
+    "name": "Rad-X",
+    "description": "Temporarily increases radiation resistance.",
+    "class": "Consumable",
+    "effect_type": "rad_resist",
+    "effect_value": 25,
+    "weight": 0.1,
+    "value": 20
+  },
+  "10mm_ammo": {
+    "name": "10mm Round",
+    "description": "10mm ammunition",
+    "class": "Ammo",
+    "ammo_type": "10mm",
+    "quantity": 1,
+    "weight": 0.01,
+    "value": 1
+  },
+  "fusion_cell": {
+    "name": "Fusion Cell",
+    "description": "fusion_cell ammunition",
+    "class": "Ammo",
+    "ammo_type": "fusion_cell",
+    "quantity": 1,
+    "weight": 0.05,
+    "value": 5
+  },
+  "caps": {
+    "name": "Bottle Cap",
+    "description": "Pre-war currency. Still used in the wasteland.",
+    "class": "Item",
+    "weight": 0.0,
+    "value": 1
+  },
+  "tool_kit": {
+    "name": "Tool Kit",
+    "description": "Essential for repairs and crafting.",
+    "class": "Item",
+    "weight": 5.0,
+    "value": 100
+  },
+  "pip_boy": {
+    "name": "Pip-Boy",
+    "description": "Pre-war personal information processor. Essential for wasteland survival.",
+    "class": "Item",
+    "weight": 1.0,
+    "value": 1000
+  },
+  "scrap_metal": {
+    "name": "Scrap Metal",
+    "description": "A pile of rusted screws, plates, and wires. Useful for crafting.",
+    "class": "Item",
+    "weight": 1.0,
+    "value": 5
+  },
+  "adhesive": {
+    "name": "Adhesive",
+    "description": "Duct tape or wonderglue. The literal glue that holds the wasteland together.",
+    "class": "Item",
+    "weight": 0.1,
+    "value": 10
+  },
+  "oil": {
+    "name": "Oil",
+    "description": "A small canister of flammable oil.",
+    "class": "Item",
+    "weight": 0.5,
+    "value": 15
+  },
+  "cloth": {
+    "name": "Cloth",
+    "description": "Scraps of fabric from old pre-war clothes.",
+    "class": "Item",
+    "weight": 0.1,
+    "value": 2
+  },
+  "empty_bottle": {
+    "name": "Empty Bottle",
+    "description": "A dirty glass bottle. Could be used for many things.",
+    "class": "Item",
+    "weight": 0.5,
+    "value": 1
+  },
+  "molotov_cocktail": {
+    "name": "Molotov Cocktail",
+    "description": "A makeshift incendiary weapon. Explodes on impact.",
+    "class": "Weapon",
+    "damage": 30,
+    "weapon_type": "ranged",
+    "skill": "Throwing",
+    "weight": 1.0,
+    "value": 40
+  },
+  "currywurst": {
+    "name": "Icy Currywurst",
+    "description": "A Berlin classic. Cold, irradiated, and delicious in its own way.",
+    "class": "Consumable",
+    "effect_type": "heal",
+    "effect_value": 20,
+    "weight": 0.5,
+    "value": 15
+  },
+  "club_mate": {
+    "name": "Warm Club-Mate",
+    "description": "The caffeine-rich beverage of pre-war hackers. It tastes like cigarettes and dirt, yet you feel energized.",
+    "class": "Consumable",
+    "effect_type": "heal",
+    "effect_value": 10,
+    "weight": 0.5,
+    "value": 25
+  },
+  "berliner_weisse": {
+    "name": "Berliner Weiße (Red)",
+    "description": "Sour wheat beer with raspberry syrup. A bit fizzy and surprisingly low in radiation.",
+    "class": "Consumable",
+    "effect_type": "rad_heal",
+    "effect_value": 15,
+    "weight": 0.5,
+    "value": 20
+  },
+  "spati_token": {
+    "name": "Späti Token",
+    "description": "A small copper coin used in the underground Späti network.",
+    "class": "Item",
+    "weight": 0.0,
+    "value": 50
+  }
+}

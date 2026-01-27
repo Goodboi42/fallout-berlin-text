@@ -1,0 +1,110 @@
+{
+  "checkpoint_charlie": {
+    "name": "Checkpoint Charlie Market",
+    "description": "A bustling neutral trading hub. The old checkpoint has been converted into a market where all factions can trade safely. The remains of the iconic 'YOU ARE LEAVING THE AMERICAN SECTOR' sign now serves as a menu for the local soup kitchen. No weapons are allowed inside.",
+    "connections": {
+      "north": "mitte_ruins",
+      "south": "kotti"
+    },
+    "npcs": ["trader_charlie"]
+  },
+  "mitte_ruins": {
+    "name": "Mitte Ruins",
+    "description": "The heart of pre-war Berlin. Skeletons of grand buildings like the Humboldt University loom over streets filled with rusted Trabis and cratered asphalt.",
+    "connections": {
+      "south": "checkpoint_charlie",
+      "north": "brandenburg_gate",
+      "east": "alexanderplatz",
+      "west": "u_bahn_tunnel"
+    },
+    "items": ["scrap_metal", "empty_bottle"]
+  },
+  "brandenburg_gate": {
+    "name": "Brandenburg Gate",
+    "description": "Once a symbol of unity, now a grim fortress. Raider banners flutter from the tops of the Doric columns. The Quadriga is gone, replaced by a jagged crown of rebar and skulls. The 'No Man's Land' has returned, but with much more literal teeth.",
+    "connections": {
+      "south": "mitte_ruins"
+    },
+    "properties": {
+      "hostile": true
+    },
+    "enemies": ["raider"]
+  },
+  "alexanderplatz": {
+    "name": "Alexanderplatz",
+    "description": "The Fernsehturm towers above, its sphere glowing with an eerie green light. The World Clock has stopped at the moment the bombs fell. Mutants wander the plaza where crowds once shopped.",
+    "connections": {
+      "west": "mitte_ruins",
+      "east": "tiergarten"
+    },
+    "properties": {
+      "radiation_level": 40
+    },
+    "items": ["currywurst"]
+  },
+  "tiergarten": {
+    "name": "Tiergarten",
+    "description": "Once a lush park, now a dense, twisted forest of mutated trees and deadly predators. The Victory Column stands in the distance, a silent witness to the carnage. The trees seem to be leaning towards the Reichstag.",
+    "connections": {
+      "west": "alexanderplatz",
+      "north": "reichstag"
+    },
+    "enemies": ["mongrel", "feral_ghoul"],
+    "items": ["stimpak", "club_mate"]
+  },
+  "reichstag": {
+    "name": "The Reichstag",
+    "description": "The hollowed-out shell of the German parliament. It has been fortified with steel plates and heavy machine gun nests. The glass dome is shattered, looking like a broken eye peering into the sky. This is the heart of the Iron Curtain's territory.",
+    "connections": {
+      "south": "tiergarten"
+    },
+    "properties": {
+      "hostile": true
+    },
+    "enemies": ["super_mutant"]
+  },
+  "kotti": {
+    "name": "Kottbusser Tor (Kotti)",
+    "description": "A chaotic nexus of makeshift stalls and dark alleys. The U-Bahn station above ground serves as a sniper nest for the local gang. It smells of ozone, roasted meat, and unwashed bodies. A 'Späti' here sells questionable goods for high prices.",
+    "connections": {
+      "north": "checkpoint_charlie",
+      "east": "gorli",
+      "south": "u_bahn_tunnel"
+    },
+    "items": ["adhesive", "spati_token"]
+  },
+  "gorli": {
+    "name": "Görlitzer Park (Görli)",
+    "description": "The park is overgrown with luminescent moss. Mutated rabbits with too many eyes hop through the ruins of the old swimming pool. It's a place of strange beauty and sudden violence.",
+    "connections": {
+      "west": "kotti",
+      "east": "oberbaumbrucke"
+    },
+    "enemies": ["radroach"],
+    "items": ["oil"]
+  },
+  "oberbaumbrucke": {
+    "name": "Oberbaumbrücke",
+    "description": "The iconic double-deck bridge. The yellow U-Bahn cars are rusted into the upper tracks. The Spree below glows with a toxic sludge. The towers have been converted into toll booths for the crossing.",
+    "connections": {
+      "west": "gorli"
+    },
+    "properties": {
+      "hostile": false,
+      "radiation_level": 10
+    }
+  },
+  "u_bahn_tunnel": {
+    "name": "U-Bahn Tunnel (U1)",
+    "description": "Pitch black and echoing with the sound of dripping water and distant skittering. The smell of decay is overwhelming. Old BVG posters for concerts that never happened still cling to the walls.",
+    "connections": {
+      "east": "mitte_ruins",
+      "north": "kotti"
+    },
+    "properties": {
+      "safe": false,
+      "radiation_level": 20
+    },
+    "enemies": ["feral_ghoul"]
+  }
+}

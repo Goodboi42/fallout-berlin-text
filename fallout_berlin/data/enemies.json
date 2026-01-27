@@ -1,0 +1,56 @@
+{
+  "radroach": {
+    "name": "Radroach",
+    "description": "A giant mutated cockroach.",
+    "level": 1,
+    "hp": 15,
+    "damage": 3,
+    "xp_reward": 10,
+    "loot_table": ["caps"]
+  },
+  "mongrel": {
+    "name": "Wild Mongrel",
+    "description": "A feral dog, stripped of its fur by radiation.",
+    "level": 2,
+    "hp": 30,
+    "damage": 6,
+    "xp_reward": 25,
+    "loot_table": []
+  },
+  "raider": {
+    "name": "Raider",
+    "description": "A hostile wasteland scavenger looking for trouble.",
+    "level": 3,
+    "hp": 50,
+    "damage": 8,
+    "xp_reward": 50,
+    "loot_table": ["pipe_pistol", "10mm_ammo", "caps", "stimpak"]
+  },
+  "raider_scum": {
+    "name": "Raider Scum",
+    "description": "A weak raider with makeshift armor.",
+    "level": 2,
+    "hp": 40,
+    "damage": 5,
+    "xp_reward": 35,
+    "loot_table": ["knife", "caps"]
+  },
+  "feral_ghoul": {
+    "name": "Feral Ghoul",
+    "description": "A mindless, irradiated human that attacks on sight.",
+    "level": 4,
+    "hp": 60,
+    "damage": 10,
+    "xp_reward": 60,
+    "loot_table": ["rad_x", "caps"]
+  },
+  "super_mutant": {
+    "name": "Super Mutant",
+    "description": "A hulking green humanoid with immense strength.",
+    "level": 8,
+    "hp": 120,
+    "damage": 15,
+    "xp_reward": 150,
+    "loot_table": ["laser_rifle", "fusion_cell", "caps"]
+  }
+}

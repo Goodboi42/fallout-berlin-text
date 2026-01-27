@@ -1,0 +1,31 @@
+{
+  "molotov_cocktail": {
+    "name": "Molotov Cocktail",
+    "requirements": {
+      "scrap_metal": 1,
+      "adhesive": 1,
+      "oil": 1,
+      "empty_bottle": 1,
+      "cloth": 1
+    },
+    "result": "molotov_cocktail",
+    "result_quantity": 1,
+    "skill_requirement": {
+      "skill": "Explosives",
+      "min_value": 20
+    }
+  },
+  "weapon_repair_kit": {
+    "name": "Weapon Repair Kit",
+    "requirements": {
+      "scrap_metal": 2,
+      "adhesive": 1
+    },
+    "result": "tool_kit",
+    "result_quantity": 1,
+    "skill_requirement": {
+      "skill": "Repair",
+      "min_value": 30
+    }
+  }
+}
