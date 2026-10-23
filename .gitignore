@@ -1,0 +1,53 @@
+__pycache__/
+*.py[cod]
+*$py.class
+saves/
+savegame.json
+
+# Local Python environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and test artifacts
+.vscode/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Local reports and temporary files
+autoplayer_reports/
+*.tmp
+*.log
+
+# Local Python environments
+.venv/
+venv/
+env/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Editor and test artifacts
+.vscode/
+.pytest_cache/
+__pycache__/
+*.py[cod]
+
+# Local reports and temporary files
+autoplayer_reports/
+*.tmp
+*.log
+
+# Internal development documentation — excluded from public release
+/docs/
+
+# Experimental standalone Pygame prototype — not part of this release
+/Final_Game_Executor_run-9.py

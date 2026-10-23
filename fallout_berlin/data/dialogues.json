@@ -1,0 +1,975 @@
+{
+  "trader_charlie": {
+    "npc_name": "Hans the Trader",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Na, wat willste? This is Checkpoint Charlie Market. Don't just stand there like a tourist, buy somethin' or move on.",
+        "options": [
+          {"text": "What do you have for sale?", "next_node": "shop"},
+          {"text": "Tell me about this place.", "next_node": "about_market"},
+          {"text": "I'm looking for information.", "next_node": "info"},
+          {
+            "text": "I'm looking for work.",
+            "next_node": "jobs",
+            "condition": {"type": "quest_state", "params": {"quest": "lost_currywurst", "state": "not_started"}}
+          },
+          {
+            "text": "I found that Currywurst.",
+            "next_node": "check_turnin",
+            "condition": {"type": "quest_state", "params": {"quest": "lost_currywurst", "state": "active"}}
+          },
+          {"text": "Tschüss. (Goodbye)", "end_dialogue": true}
+        ]
+      },
+      "jobs": {
+        "text": "Actually, yes. My currywurst sauce is missing a certain... kick. Legend says there's a perfectly preserved, glowing Currywurst at Alexanderplatz. Bring it to me.",
+        "options": [
+          {
+            "text": "I'll find it.",
+            "next_node": "start",
+            "action": "start_currywurst_quest"
+          },
+          {"text": "Sounds dangerous. No thanks.", "next_node": "start"},
+          {"text": "I need to think about it.", "next_node": "start"}
+        ]
+      },
+      "shop": {
+        "text": "I've got the usual junk. Stimpaks, some rusty ammo, and real Icy Currywurst if you've got the caps.",
+        "options": [
+          {"text": "Show me your wares.", "end_dialogue": true, "action": "open_shop"},
+          {"text": "How much for a Currywurst?", "next_node": "currywurst_price"},
+          {"text": "Never mind.", "next_node": "start"}
+        ]
+      },
+      "about_market": {
+        "text": "Checkpoint Charlie is where the magic happens. We're between the Iron Ring in the East and the Free Berliners in the West. The Broker keeps the peace. If you pull a gun, you're dead before you can say 'Currywurst'.",
+        "options": [
+          {"text": "Who is the Broker?", "next_node": "broker"},
+          {"text": "I have another question.", "next_node": "start"},
+          {"text": "Interesting. Thanks.", "next_node": "start"}
+        ]
+      },
+      "broker": {
+        "text": "The Broker? Some say he was a Stasi ghost, others say he's just a synth from the old world. All I know is his robots don't miss. Keep your nose clean and you'll be fine.",
+        "options": [
+          {"text": "I see. Thanks.", "next_node": "start"},
+          {"text": "I have more questions.", "next_node": "start"}
+        ]
+      },
+      "info": {
+        "text": "Information ain't free, kid. But since I like your face... mostly. What's on your mind?",
+        "options": [
+          {"text": "Tell me about the factions.", "next_node": "factions"},
+          {"text": "Where can I find supplies?", "next_node": "supplies"},
+          {"text": "Never mind.", "next_node": "start"}
+        ]
+      },
+      "factions": {
+        "text": "The Iron Ring holds the Reichstag and most of the East. They're all about 'order' and 'discipline'. The Free Berliners in the West are just a bunch of chaotic punks, but they have the best Club-Mate. And don't even get me started on the Tunnel Rats in the U-Bahn.",
+        "options": [
+          {"text": "Thanks for the info.", "next_node": "start"},
+          {"text": "I have another question.", "next_node": "start"}
+        ]
+      },
+      "supplies": {
+        "text": "You want the good stuff? Go to Kotti, if you have the balls. Or try the Kreuzberg Bazaar. Just watch out for the rad-rabbits in Görli. They'll take a finger off if you're slow.",
+        "options": [
+          {"text": "Thanks.", "next_node": "start"},
+          {"text": "I have another question.", "next_node": "start"}
+        ]
+      },
+      "currywurst_price": {
+        "text": "A Currywurst will set you back 15 caps. It's the real deal, not that pre-war canned garbage.",
+        "options": [
+          {"text": "I'll take one.", "end_dialogue": true, "action": "buy_currywurst"},
+          {"text": "Too expensive.", "next_node": "shop"},
+          {"text": "Never mind.", "next_node": "start"}
+        ]
+      },
+      "check_turnin": {
+        "text": "You did? Let me see it. Don't hold out on me.",
+        "options": [
+          {
+            "text": "[Give Currywurst]",
+            "next_node": "quest_complete",
+            "condition": {"type": "has_item", "params": {"item": "currywurst"}},
+            "action": "complete_currywurst_quest"
+          },
+          {"text": "I don't have it right now.", "next_node": "start"},
+          {"text": "Let me check my bags again.", "next_node": "start"}
+        ]
+      },
+      "quest_complete": {
+        "text": "Das ist es! The glow... it's beautiful. Here's your payment. Now, get out of here before I eat this whole thing.",
+        "options": [
+          {"text": "Thanks.", "next_node": "start"},
+          {"text": "Goodbye.", "end_dialogue": true}
+        ]
+      }
+    }
+  },
+  "mother_renate": {
+    "npc_name": "Mother Renate",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Welcome back to the Feld, child. The wind carries the scent of growing things today. Or is that just the ozone from the West? What brings you to our humble soil?",
+        "options": [
+          {"text": "I want to help.", "next_node": "help_garden"},
+          {"text": "Tell me about the Feld.", "next_node": "about_feld"},
+          {"text": "What is your philosophy here?", "next_node": "about_philosophy"},
+          {"text": "You seem to know a lot about the old city.", "next_node": "about_history"},
+          {"text": "What do you think of Berlin's future?", "next_node": "about_berlin"},
+          {"text": "What are the other factions like?", "next_node": "about_factions"},
+          {"text": "Go with the sun, child. And remember: we share, or we starve.", "end_dialogue": true}
+        ]
+      },
+      "help_garden": {
+        "text": "Our crops are struggling. I need seeds from the old Tiergarten. They have adapted to the radiation. Will you fetch them?",
+        "options": [
+          {
+            "text": "I'll find your seeds.",
+            "next_node": "start",
+            "action": "start_green_thumb",
+            "condition": {"type": "quest_state", "params": {"quest": "green_thumb", "state": "not_started"}}
+          },
+          {
+            "text": "I have the seeds.",
+            "next_node": "seeds_need_purification",
+            "condition": {"type": "has_item", "params": {"item": "mutated_seeds"}}
+          },
+          {
+            "text": "I have the purified seeds and I've cleared the pests.",
+            "next_node": "complete_garden",
+            "action": "complete_green_thumb",
+            "condition": {
+              "type": "and",
+              "params": [
+                {"type": "has_item", "params": {"item": "purified_seeds"}},
+                {"type": "quest_state", "params": {"quest": "green_thumb", "state": "active"}}
+              ]
+            }
+          },
+          {"text": "I'm still working on it.", "next_node": "garden_status"},
+          {"text": "I have to go now.", "end_dialogue": true}
+        ]
+      },
+      "garden_status": {
+        "text": "The Tiergarten is dangerous, I know. But the Feld is patient, child. Take your time, but do not forget us.",
+        "options": [
+          {"text": "I won't. I'll be back.", "end_dialogue": true},
+          {"text": "Wait, I have another question.", "next_node": "start"}
+        ]
+      },
+      "seeds_need_purification": {
+        "text": "These seeds... they are choked by a Tiergarten fungus. They will poison the soil if planted now. Take them to Mehmet in Kreuzberg; he has a way with the old world's mutations. Also, a pack of Radhunde is threatening our North Hangar nursery. We cannot plant until they are gone.",
+        "options": [
+          {"text": "I'll handle the purification and the pests.", "next_node": "start", "action": "trigger_green_thumb_stage_2"},
+          {"text": "I'll be back later.", "next_node": "start"}
+        ]
+      },
+      "complete_garden": {
+        "text": "Wonderful! The fungus is gone, and the hangars are safe. These will feed many. Take this fruit and this kit as thanks. We plant today for a harvest we'll never see.",
+        "options": [
+            {"text": "Thank you, Mother Renate.", "end_dialogue": true},
+            {"text": "I had another question before I go.", "next_node": "start"}
+        ]
+      },
+      "about_feld": {
+        "text": "This was once an airport, child. People flew across the world. Now, it is where the world learns to grow again. We took the runways and made them life-givers. But remember: hoarding is a capital offense here. We share, or we starve.",
+        "options": [
+            {"text": "I understand.", "next_node": "start"},
+            {"text": "I have another question.", "next_node": "start"}
+        ]
+      },
+      "about_philosophy": {
+        "text": "In the garden, every seed gets the same sun, the same water. Why should humans be any different? We plant today for a harvest we'll never see. Those who hoard are the weeds, child. And weeds must be pulled. (She adjusted her robes, a faint smell of formaldehyde and old powder wafting from her, her eyes lingering on your face a moment too long.)",
+        "options": [
+            {"text": "A noble goal.", "next_node": "start"},
+            {"text": "You look... surprisingly well, considering the wasteland.", "next_node": "renate_appearance_remark"},
+            {"text": "I see.", "next_node": "start"}
+        ]
+      },
+      "renate_appearance_remark": {
+        "text": "Flattery will not earn you extra rations, child. The Feld keeps us strong. And resourceful. The old ways... they teach us resilience. (A hint of something ancient in her voice.) Do you have more questions for an old woman?",
+        "options": [
+            {"text": "I have more questions.", "next_node": "start"},
+            {"text": "Goodbye.", "end_dialogue": true}
+        ]
+      },
+      "about_history": {
+        "text": "I remember when the Tiergarten wasn't a jungle. The air smelled of blossoms, not ozone and rot. I was... a researcher then. We tried to save the world with science. Look where it got us. Now, we save it with hands and dirt.",
+        "options": [
+            {"text": "You were a researcher?", "next_node": "start"},
+            {"text": "Tell me more.", "next_node": "start"}
+        ]
+      },
+      "about_berlin": {
+        "text": "Berlin was a city of layers, always rebuilding. But this layer... it is the hardest one yet. We must be the caretakers of the ruins, or they will swallow us. The city is a living thing, child, and right now, it is very, very sick.",
+        "options": [
+            {"text": "We'll do our best.", "next_node": "start"},
+            {"text": "I have more questions.", "next_node": "start"}
+        ]
+      },
+      "about_factions": {
+        "text": "The Iron Ring... they are machines trying to be men. The Knights are men trying to be legends. Both are obsessed with the past. We are the future, child. Even if it's a future of dirt and toil.",
+        "options": [
+            {"text": "I see.", "next_node": "start"},
+            {"text": "Interesting perspective.", "next_node": "start"}
+        ]
+      }
+    }
+  },
+  "general_von_stahl": {
+    "npc_name": "General Von Stahl",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Civilian. State your business. The Iron Ring has no time for loiterers. My processors are already at 98% capacity managing the district's 'irregularities'. We are all instruments of order.",
+        "options": [
+          {"text": "I want to join the Iron Ring.", "next_node": "join"},
+          {"text": "Tell me about the Iron Ring.", "next_node": "about_iron_ring"},
+          {"text": "What do you think of the other factions?", "next_node": "about_factions"},
+          {"text": "Who are you exactly?", "next_node": "about_self"},
+          {"text": "Ordnung muss sein. Do not obstruct the hallways on your way out.", "end_dialogue": true}
+        ]
+      },
+      "about_iron_ring": {
+          "text": "We are the Eiserne Ring. The only thing standing between Berlin and the void. We preserve the Prussian Protocol. Without us, the city is just rubble and screaming.",
+          "options": [
+              {"text": "I see.", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+          ]
+      },
+      "about_factions": {
+          "text": "The others? Inefficient. The 'Commune' plays at gardening while the world rots. The 'Knights' play at fairy tales. And the 'Wall Breakers'... they are simply a virus to be purged.",
+          "options": [
+              {"text": "Understood.", "next_node": "start"},
+              {"text": "I have more questions.", "next_node": "start"}
+          ]
+      },
+      "about_self": {
+          "text": "I am the Generaloberst. My body is steel, my mind is logic. I... [Static crackles, Von Stahl twitches slightly, then resumes with a metallic whir] ...the Reichstag's core protocols demand order. I ensure the Republic survives. Even if every 'free' thought must be purged for it.",
+          "options": [
+              {"text": "Are you alright?", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+          ]
+      },
+      "join": {
+        "text": "We value strength and obedience. Your profile indicates... potential. A scout carrying vital data on the 'Phantom Citizens' was lost in the Fernsehturm. Retrieve the data drive, and we shall see if you are worthy of serving order.",
+        "options": [
+          {
+            "text": "Consider it done.",
+            "next_node": "start",
+            "action": "start_iron_will",
+            "condition": {"type": "quest_state", "params": {"quest": "iron_will", "state": "not_started"}}
+          },
+          {
+            "text": "I have the data drive.",
+            "next_node": "complete_join",
+            "action": "complete_iron_will",
+            "condition": {
+              "type": "and",
+              "params": [
+                {"type": "has_item", "params": {"item": "iron_ring_data"}},
+                {"type": "quest_state", "params": {"quest": "iron_will", "state": "active"}}
+              ]
+            }
+          },
+          {"text": "I need more time.", "next_node": "start"},
+          {"text": "I'll be back later.", "end_dialogue": true}
+        ]
+      },
+      "complete_join": {
+        "text": "Impressive. Your efficiency is noted. You may have potential. Take this 'Ordnung Muss Sein' rifle as your initial implement of order. Do not disappoint me.",
+        "options": [
+            {"text": "Yes, General.", "end_dialogue": true},
+            {"text": "I have more questions.", "next_node": "start"}
+        ]
+      }
+    }
+  },
+  "scavenger_hans": {
+    "npc_name": "Scavenger Hans",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Hey! Don't sneak up on me like that. Thought you were a Ghoul.",
+        "options": [
+          {"text": "Found anything good?", "next_node": "loot"},
+          {"text": "Goodbye.", "end_dialogue": true}
+        ]
+      },
+      "loot": {
+        "text": "Just scrap. But I heard the Museum Island has some pre-war tech. If you don't mind the Super Mutants.",
+        "options": [
+            {"text": "Thanks for the tip.", "end_dialogue": true},
+            {"text": "Wait, I have another question.", "next_node": "start"}
+        ]
+      }
+    }
+  },
+  "mehmet_mutant": {
+    "npc_name": "Mehmet",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Hosgeldin, traveler. You look hungry. Existence is hunger, ja? You want Döner with sauce? Or do you seek the 'thing-in-itself'?",
+        "options": [
+          {"text": "What kind of meat is this?", "next_node": "meat_philosophy"},
+          {"text": "Tell me about this place.", "next_node": "about_kreuzberg"},
+          {"text": "What are you reading?", "next_node": "about_philosophy"},
+          {"text": "Just give me a Döner.", "next_node": "buy_doner"},
+          {"text": "5 caps. Extra spicy is free, because pain reminds us we are alive. Güle güle.", "end_dialogue": true}
+        ]
+      },
+      "meat_philosophy": {
+        "text": "Meat is meat. We are all meat. Kant says we cannot know the thing-in-itself, only the appearance. This appears to be meat. Does it matter if it was a Radhunde or a scavenger? It tastes like survival.",
+        "options": [
+          {"text": "Deep. I'll take one.", "next_node": "buy_doner"},
+          {"text": "I have another question.", "next_node": "start"},
+          {"text": "I'll pass.", "next_node": "start"}
+        ]
+      },
+      "about_philosophy": {
+          "text": "I read the old books while the meat rotates. The Critique of Pure Reason... it is like a good Döner. Layer upon layer of logic. Most people just want the sauce, though.",
+          "options": [
+              {"text": "I see.", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+          ]
+      },
+      "about_kreuzberg": {
+          "text": "This is the heart of Berlin. Turks, Arabs, Germans, ghouls... we all eat at Mehmet's. The Döner Mafia keeps the peace. Why fight when you can eat?",
+          "options": [
+              {"text": "Interesting.", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+          ]
+      },
+      "buy_doner": {
+        "text": "5 caps. Extra spicy is free, because pain reminds us we are alive.",
+        "options": [
+            {"text": "Here.", "end_dialogue": true, "action": "buy_doner"},
+            {"text": "Actually, I have a question first.", "next_node": "start"},
+            {"text": "Too expensive.", "next_node": "start"}
+        ]
+      }
+    }
+  },
+  "hauptmann_richter": {
+    "npc_name": "Hauptmann Richter",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Halt! State your business and present your Anmeldung Form 27-B. No form, no entry.",
+        "options": [
+          {"text": "I don't have a form.", "next_node": "no_form"},
+          {"text": "I'm leaving.", "end_dialogue": true}
+        ]
+      },
+      "no_form": {
+        "text": "Typical. Disorder everywhere. Go to Mitte, find the form, get it stamped by the Werkbund. Then we talk. Ordnung muss sein!",
+        "options": [
+            {"text": "Fine, I'll get your paperwork.", "end_dialogue": true, "action": "start_bureaucrats_nightmare"},
+            {"text": "Is there no other way?", "next_node": "start"},
+            {"text": "I'll be back.", "end_dialogue": true}
+        ]
+      }
+    }
+  },
+  "the_archivist": {
+    "npc_name": "The Archivist",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Your files are... incomplete. I am the Archivist. Every secret of Berlin is etched into my neural link. What do you seek in the depths of Normannenstraße?",
+        "options": [
+          {"text": "I'm looking for information.", "next_node": "info"},
+          {"text": "I need a Universal Crossing Permit.", "next_node": "bureaucracy_quest"},
+          {"text": "Goodbye.", "end_dialogue": true}
+        ]
+      },
+      "info": {
+        "text": "Information is a currency more stable than caps. Trade me a Stasi File, and I shall reveal a secret of the Iron Ring.",
+        "options": [
+          {"text": "[Give Stasi File]", "next_node": "reveal_secret", "condition": {"type": "has_item", "params": {"item": "stasi_file"}}},
+          {"text": "Maybe later.", "next_node": "start"},
+          {"text": "I don't have that.", "next_node": "start"}
+        ]
+      },
+      "reveal_secret": {
+        "text": "The General's 'discipline' is a mask for his fear. He's building a bunker under the Reichstag. Now, move on. My neural link is heating up.",
+        "options": [
+            {"text": "Thanks.", "next_node": "start"},
+            {"text": "Goodbye.", "end_dialogue": true}
+        ]
+      },
+      "bureaucracy_quest": {
+        "text": "The Bürgeramt is a labyrinth of their own making. If you wish to navigate it, you must start with the basics. Have you filled out Form 27-B?",
+        "options": [
+          {"text": "I'll get on it.", "next_node": "start", "action": "start_bureaucracy_blues", "condition": {"type": "quest_state", "params": {"quest": "bureaucracy_blues", "state": "not_started"}}},
+          {"text": "I'll be back later.", "next_node": "start"}
+        ]
+      }
+    }
+  },
+  "merchant_jakob": {
+    "npc_name": "Merchant Jakob",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Willkommen to Potsdamer Platz! The Werkbund keeps the trade flowing, and I keep the prices reasonable... mostly. Looking for tools, parts, or just a friendly ear?",
+        "options": [
+          {"text": "Show me what you have.", "next_node": "shop"},
+          {"text": "Tell me about the Werkbund.", "next_node": "about_werkbund"},
+          {"text": "Is it safe here?", "next_node": "about_safety"},
+          {"text": "Just passing through.", "end_dialogue": true}
+        ]
+      },
+      "shop": {
+        "text": "Top quality salvage from the ruins. No refunds if it explodes.",
+        "options": [
+          {"text": "Let's trade.", "end_dialogue": true, "action": "open_shop"},
+          {"text": "Maybe later.", "next_node": "start"}
+        ]
+      },
+      "about_werkbund": {
+        "text": "We are the builders, the fixers. The Iron Ring shoots things, the Free Berliners break things. We put them back together. Someone has to.",
+        "options": [
+          {"text": "I see.", "next_node": "start"},
+          {"text": "I have another question.", "next_node": "start"}
+        ]
+      },
+      "about_safety": {
+        "text": "As long as you don't steal, you're safe. We have turrets, and we know how to use them. Just watch out for the occasional raider from the U-Bahn.",
+        "options": [
+          {"text": "Good to know.", "next_node": "start"},
+          {"text": "I have another question.", "next_node": "start"}
+        ]
+      }
+    }
+  },
+  "schwertmeister": {
+    "npc_name": "Der Schwertmeister",
+    "start_node": "start",
+    "nodes": {
+      "start": {
+        "text": "Halt, wanderer. You stand before the Citadel of the Bundesritter. Do you come with honor, or must we teach you some?",
+        "options": [
+          {"text": "I come in peace.", "next_node": "peace"},
+          {"text": "Who are you?", "next_node": "about_identity"},
+          {"text": "I seek glory.", "next_node": "glory"},
+          {"text": "I'm leaving.", "end_dialogue": true}
+        ]
+      },
+      "peace": {
+        "text": "Peace is a noble pursuit, but often requires a blade to maintain. We are the shields of the innocent.",
+        "options": [
+          {"text": "Tell me about your order.", "next_node": "about_order"},
+          {"text": "I have another question.", "next_node": "start"}
+        ]
+      },
+      "about_identity": {
+        "text": "I am the Schwertmeister. First Blade of the Bundesritter. My life belongs to the Code and the Citadel.",
+        "options": [
+            {"text": "Impressive.", "next_node": "start"},
+            {"text": "I have another question.", "next_node": "start"}
+        ]
+      },
+      "about_order": {
+        "text": "The Bundesritter are the true heirs of this land. We do not hide in bunkers like the Iron Ring. We stand in the light, defending those who cannot defend themselves.",
+        "options": [
+            {"text": "A worthy cause.", "next_node": "start"},
+            {"text": "Sounds dangerous.", "next_node": "start"}
+        ]
+      },
+      "glory": {
+        "text": "Glory is earned in blood and sweat. If you wish to join our ranks, you must prove your valor. But not today. Today, you are just a stranger.",
+        "options": [
+            {"text": "I will prove myself.", "next_node": "start"},
+            {"text": "Maybe later.", "end_dialogue": true}
+        ]
+      }
+    }
+  },
+    "lena_raider": {
+      "npc_name": "Iron-Tooth Lena",
+      "start_node": "lena_greeting_1",
+      "nodes": {
+        "lena_greeting_1": {
+          "text": "State your business, outsider. Make it quick, or make it hurt.",
+          "options": [
+            {"text": "What are the dynamics of the Raider Fortress?", "next_node": "lena_fortress_dynamics"},
+            {"text": "What's the Berlin Wall's influence around here?", "next_node": "lena_wall_influence"},
+            {"text": "I'm interested in trade or alliances.", "next_node": "lena_trade_alliance"},
+            {"text": "I heard you have a problem with a rival gang.", "next_node": "lena_quest_hook_intro", "condition": {"type": "quest_state", "params": {"quest": "clear_rival_gang", "state": "not_started"}}},
+            {"text": "I've cleared out the rival gang.", "next_node": "lena_quest_complete_check", "condition": {"type": "quest_state", "params": {"quest": "clear_rival_gang", "state": "active"}}},
+            {"text": "Just passing through. (Goodbye)", "end_dialogue": true}
+          ]
+        },
+        "lena_greeting_2": {
+          "text": "Another fresh face. Don't waste my time.",
+          "options": [
+            {"text": "What are the dynamics of the Raider Fortress?", "next_node": "lena_fortress_dynamics"},
+            {"text": "What's the Berlin Wall's influence around here?", "next_node": "lena_wall_influence"},
+            {"text": "I'm interested in trade or alliances.", "next_node": "lena_trade_alliance"},
+            {"text": "I heard you have a problem with a rival gang.", "next_node": "lena_quest_hook_intro", "condition": {"type": "quest_state", "params": {"quest": "clear_rival_gang", "state": "not_started"}}},
+            {"text": "I've cleared out the rival gang.", "next_node": "lena_quest_complete_check", "condition": {"type": "quest_state", "params": {"quest": "clear_rival_gang", "state": "active"}}},
+            {"text": "Just passing through. (Goodbye)", "end_dialogue": true}
+          ]
+        },
+        "lena_fortress_dynamics": {
+          "text": "We're the Iron-Teeth. We took this fort, we hold this territory. Everyone else is either under us or dead. Simple as that. My word is law.",
+          "options": [
+            {"text": "I have another question.", "next_node": "lena_greeting_1"},
+            {"text": "Understood. (Goodbye)", "end_dialogue": true}
+          ]
+        },
+        "lena_wall_influence": {
+          "text": "The Wall... it's a constant reminder. Of what was, and what we are now. Mutants, radiation, desperation. It breeds strength, or it breaks you. Nothing in between.",
+          "options": [
+            {"text": "I have another question.", "next_node": "lena_greeting_1"},
+            {"text": "Deep. (Goodbye)", "end_dialogue": true}
+          ]
+        },
+        "lena_trade_alliance": {
+          "text": "We're always looking for an advantage. Bring me something useful, prove your worth, and we can talk. Otherwise, you're just another mouth to feed.",
+          "options": [
+            {"text": "What would be considered useful?", "next_node": "lena_quest_hook_intro"},
+            {"text": "I have another question.", "next_node": "lena_greeting_1"},
+            {"text": "Understood. (Goodbye)", "end_dialogue": true}
+          ]
+        },
+        "lena_quest_hook_intro": {
+          "text": "There's a nuisance to the west. A pack of curs think they can nibble at my borders. Handle them, and we can talk about a more permanent arrangement.",
+          "options": [
+            {"text": "I'll clear out the rival gang.", "next_node": "lena_quest_accepted", "action": "start_clear_rival_gang_quest"},
+            {"text": "I'll think about it.", "next_node": "lena_greeting_1"},
+            {"text": "Sounds dangerous. (Goodbye)", "end_dialogue": true}
+          ]
+        },
+        "lena_quest_accepted": {
+          "text": "Good. Don't disappoint me. Return when the job is done.",
+          "options": [
+            {"text": "I won't. (Goodbye)", "end_dialogue": true},
+            {"text": "I have another question.", "next_node": "lena_greeting_1"}
+          ]
+        },
+        "lena_quest_complete_check": {
+          "text": "So, you're back. Is the nuisance handled?",
+          "options": [
+            {"text": "Yes, the rival gang is no more.", "next_node": "lena_quest_complete", "action": "complete_clear_rival_gang_quest"},
+            {"text": "Not yet, I'm still working on it.", "next_node": "lena_quest_accepted"},
+            {"text": "I've decided not to bother.", "next_node": "lena_greeting_1"}
+          ]
+        },
+        "lena_quest_complete": {
+          "text": "Hmph. Impressive. You have proven your strength. Here is your reward. Perhaps we can work together again.",
+          "options": [
+            {"text": "Thank you, Lena. (Goodbye)", "end_dialogue": true},
+            {"text": "I have another question.", "next_node": "lena_greeting_1"}
+          ]
+        }
+      }
+    },
+      "aris_researcher": {
+        "npc_name": "Dr. Aris Thorne",
+        "start_node": "aris_greeting_1",
+        "nodes": {
+          "aris_greeting_1": {
+            "text": "WHO ARE YOU? Don't... don't touch anything! Data is sensitive!",
+            "options": [
+              {"text": "Tell me about the Whispering Woods.", "next_node": "aris_woods_phenomena"},
+              {"text": "What about the Institute's downfall?", "next_node": "aris_institute_downfall"},
+              {"text": "Your theories on the Wall's mutagenic properties?", "next_node": "aris_wall_mutagenic"},
+              {"text": "Are you looking for anything?", "next_node": "aris_quest_hook_intro", "condition": {"type": "quest_state", "params": {"quest": "collect_mutated_samples", "state": "not_started"}}},
+              {"text": "I have those mutated samples.", "next_node": "aris_quest_complete_check", "condition": {"type": "quest_state", "params": {"quest": "collect_mutated_samples", "state": "active"}}},
+              {"text": "Sorry to bother you. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "aris_greeting_2": {
+            "text": "Another anomaly? No, no, just... just a person. What do you want? Don't interrupt my calculations!",
+            "options": [
+              {"text": "Tell me about the Whispering Woods.", "next_node": "aris_woods_phenomena"},
+              {"text": "What about the Institute's downfall?", "next_node": "aris_institute_downfall"},
+              {"text": "Your theories on the Wall's mutagenic properties?", "next_node": "aris_wall_mutagenic"},
+              {"text": "Are you looking for anything?", "next_node": "aris_quest_hook_intro", "condition": {"type": "quest_state", "params": {"quest": "collect_mutated_samples", "state": "not_started"}}},
+              {"text": "I have those mutated samples.", "next_node": "aris_quest_complete_check", "condition": {"type": "quest_state", "params": {"quest": "collect_mutated_samples", "state": "active"}}},
+              {"text": "Sorry to bother you. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "aris_woods_phenomena": {
+            "text": "The Woods! They are alive, changing, screaming! The mutations... not just physical. Energetic. The Wall feeds them, twists them! It's magnificent and terrifying!",
+            "options": [
+              {"text": "I have another question.", "next_node": "aris_greeting_1"},
+              {"text": "Fascinating. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "aris_institute_downfall": {
+            "text": "The Institute... fools! So focused on control, they missed the true nature of the anomaly! They thought they could contain it. Hah! The Wall laughs at their hubris!",
+            "options": [
+              {"text": "I have another question.", "next_node": "aris_greeting_1"},
+              {"text": "What happened to them?", "next_node": "aris_institute_downfall_2"}
+            ]
+          },
+          "aris_institute_downfall_2": {
+            "text": "They fell. Like all who try to cage the wild. Their research, their lives, scattered to the winds. I escaped. With the real data. The truth!",
+            "options": [
+              {"text": "I have another question.", "next_node": "aris_greeting_1"},
+              {"text": "Understood. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "aris_wall_mutagenic": {
+            "text": "It's not just radiation! It's a localized reality distortion field! The Wall is a conduit! It warps matter, energy, even perception! My theories... they are almost complete!",
+            "options": [
+              {"text": "I have another question.", "next_node": "aris_greeting_1"},
+              {"text": "Incredible. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "aris_quest_hook_intro": {
+            "text": "The woods... they whisper secrets! Secrets the Institute ignored! I need proof. Samples, specific ones, from the deepest thickets. Bring them, and I'll show you truths they never dared to acknowledge!",
+            "options": [
+              {"text": "I'll collect the samples.", "next_node": "aris_quest_accepted", "action": "start_collect_mutated_samples_quest"},
+              {"text": "I'll think about it.", "next_node": "aris_greeting_1"},
+              {"text": "Sounds dangerous. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "aris_quest_accepted": {
+            "text": "Excellent! Don't delay! The anomalies... they shift! The data must be acquired swiftly!",
+            "options": [
+              {"text": "I understand. (Goodbye)", "end_dialogue": true},
+              {"text": "I have another question.", "next_node": "aris_greeting_1"}
+            ]
+          },
+          "aris_quest_complete_check": {
+            "text": "You have returned! Do you have the samples? Quickly, quickly!",
+            "options": [
+              {"text": "Yes, I have them.", "next_node": "aris_quest_complete", "action": "complete_collect_mutated_samples_quest"},
+              {"text": "Not yet, I'm still searching.", "next_node": "aris_quest_accepted"},
+              {"text": "I couldn't find them.", "next_node": "aris_greeting_1"}
+            ]
+          },
+          "aris_quest_complete": {
+            "text": "Yes! These are perfect! The fibrous structures... the luminescence! My theories are confirmed! As promised, take these schematics. They contain knowledge the Institute suppressed!",
+            "options": [
+              {"text": "Thank you, Doctor. (Goodbye)", "end_dialogue": true},
+              {"text": "I have another question.", "next_node": "aris_greeting_1"}
+            ]
+          }
+        }
+      },
+      "unit_247": {
+        "npc_name": "Unit 247",
+        "start_node": "start",
+        "nodes": {
+          "start": {
+            "text": "Greetings, citizen. Unit 247 on patrol. Sector parameters within acceptable deviance. State your query, or cease non-essential loitering.",
+            "options": [
+              {"text": "Who are you?", "next_node": "about_self"},
+              {"text": "What is your function?", "next_node": "about_function"},
+              {"text": "Tell me about The Broker.", "next_node": "about_broker"},
+              {"text": "I need information.", "next_node": "unit_info_quest"},
+              {"text": "Goodbye.", "end_dialogue": true}
+            ]
+          },
+          "about_self": {
+            "text": "I am Unit 247. A Mark IV Protectron, repurposed for peacekeeping duties by The Broker. My humor subroutines are... occasionally active. Do not be alarmed.",
+            "options": [
+              {"text": "A sentient Protectron?", "next_node": "start"},
+              {"text": "I have more questions.", "next_node": "start"}
+            ]
+          },
+          "about_function": {
+            "text": "My primary directive is to maintain neutrality within designated zones. My secondary directive is to observe, and if appropriate, offer cryptic assistance to interesting biological units such as yourself.",
+            "options": [
+              {"text": "Why 'cryptic assistance'?", "next_node": "start"},
+              {"text": "I have more questions.", "next_node": "start"}
+            ]
+          },
+          "about_broker": {
+            "text": "The Broker is... a paradox. An entity of pure information and transaction. My analysis indicates a 73.4% probability that The Broker is a pre-war financial AI. The remaining percentage is... undefined.",
+            "options": [
+              {"text": "What makes you say that?", "next_node": "start"},
+              {"text": "I have more questions.", "next_node": "start"}
+            ]
+          },
+          "unit_info_quest": {
+            "text": "Information is... valuable. My internal logs indicate a missing component for optimal data retrieval. Locate a 'Protectron Spare Parts' item, and I may be able to access... non-critical intel for you.",
+            "options": [
+              {
+                "text": "I'll find the parts.",
+                "next_node": "start",
+                "action": "start_unit_247_repair",
+                "condition": {"type": "quest_state", "params": {"quest": "unit_247_repair", "state": "not_started"}}
+              },
+              {
+                "text": "I have the Protectron Spare Parts.",
+                "next_node": "complete_unit_info",
+                "action": "complete_unit_247_repair",
+                "condition": {"type": "has_item", "params": {"item": "protectron_spare_parts"}}
+              },
+              {"text": "I'll be back later.", "next_node": "start"}
+            ]
+          },
+          "complete_unit_info": {
+            "text": "Accessing new data streams... [A whirring sound emanates from its chassis.] Interesting. It appears General Von Stahl has a secret route beneath the Reichstag. You may find this useful. My gratitude, human.",
+            "options": [
+              {"text": "Thanks, Unit 247.", "end_dialogue": true},
+              {"text": "I have more questions.", "next_node": "start"}
+            ]
+          }
+        }
+      },
+      "kreuzberg_klaus": {
+        "npc_name": "Kreuzberg-Klaus",
+        "start_node": "start",
+        "nodes": {
+          "start": {
+            "text": "Ey, Alter! Du siehst aus wie frisch ausm U-Bahn Schacht. Klaus, ick bin's. Du kennst doch Techno, oda? Ick hab's erfunden! Glaubste mir nich?",
+            "options": [
+              {"text": "You invented techno?", "next_node": "klaus_techno"},
+              {"text": "Tell me about pre-war Berlin.", "next_node": "klaus_pre_war"},
+              {"text": "What's 'The Bunker' club?", "next_node": "klaus_bunker"},
+              {"text": "I'm looking for old music.", "next_node": "klaus_quest_hook_intro"},
+              {"text": "Just passing through, Klaus.", "end_dialogue": true}
+            ]
+          },
+          "klaus_techno": {
+            "text": "Na klar! Im '89, da hab' ick die Platten gedreht, da stand die Mauer noch! Boom-tshk, boom-tshk! Die Leute sind ausgerastet! Und dann kam der Krieg... hat den Beat nich gestoppt, nur verzerrt.",
+            "options": [
+              {"text": "That's quite a story.", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+            ]
+          },
+          "klaus_pre_war": {
+            "text": "Berlin war anders, Alter. Bunt, laut, frei. Immer im Wandel. Und dann kam der Knall. Aber die Seele... die ist geblieben. Tief unter dem Schutt. Ich hab's gesehen.",
+            "options": [
+              {"text": "What do you remember most?", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+            ]
+          },
+          "klaus_bunker": {
+            "text": "'The Bunker'! Das ist mein Reich. Freitag ist heilig! Die Musik heilt die Seele, Alter. Auch wenn die Seele verstrahlt is. Komm vorbei, der Eintritt ist frei. Aber bring deine eigene gute Laune mit.",
+            "options": [
+              {"text": "Sounds like a party.", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+            ]
+          },
+          "klaus_quest_hook_intro": {
+            "text": "Alte Musik, sagste? Ick hab da mal 'ne Kiste voller Platten gehabt. Techno, Punk, alles. Aber 'n paar Raider haben die geklaut. Ausm alten Club-Mate Lager in... wo war das nochmal? Ach, egal. Find se, und ick geb dir den besten Mix, den du je gehört hast!",
+            "options": [
+              {
+                "text": "I'll find your records, Klaus.",
+                "next_node": "start",
+                "action": "start_klaus_record_hunt",
+                "condition": {"type": "quest_state", "params": {"quest": "klaus_record_hunt", "state": "not_started"}}
+              },
+              {"text": "I'll be back later.", "next_node": "start"}
+            ]
+          }
+        }
+      },
+      "patron_osman": {
+        "npc_name": "Patron Osman",
+        "start_node": "start",
+        "nodes": {
+          "start": {
+            "text": "Welcome to Kreuzberg. Best döner in the wasteland. What can I get you? Or are you here to talk business?",
+            "options": [
+              {"text": "I'd like a döner.", "next_node": "buy_doner"},
+              {"text": "Tell me about The Döner Mafia.", "next_node": "about_mafia"},
+              {"text": "I'm looking for work.", "next_node": "osman_quest_hook_intro"},
+              {"text": "Just looking. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "buy_doner": {
+            "text": "One fresh döner, coming right up. That'll be 10 caps.",
+            "options": [
+              {"text": "Here you go.", "end_dialogue": true, "action": "buy_doner_kebab"},
+              {"text": "Too expensive.", "next_node": "start"}
+            ]
+          },
+          "about_mafia": {
+            "text": "The Döner Mafia is simple. We feed the people, we keep the peace. You cause trouble, you get no döner. You work with us, you eat well. He who controls the meat, controls the street.",
+            "options": [
+              {"text": "Makes sense.", "next_node": "start"},
+              {"text": "I have more questions.", "next_node": "start"}
+            ]
+          },
+          "osman_quest_hook_intro": {
+            "text": "Business is good, but competition is always fierce. Some raiders from Wedding are trying to muscle in on our supply routes. Clear them out, and I'll make sure you're well-fed and well-paid.",
+            "options": [
+              {
+                "text": "I'll handle the raiders.",
+                "next_node": "start",
+                "action": "start_doner_mafia_protection",
+                "condition": {"type": "quest_state", "params": {"quest": "doner_mafia_protection", "state": "not_started"}}
+              },
+              {"text": "I'll consider it.", "next_node": "start"}
+            ]
+          }
+        }
+      },
+      "der_gaertner": {
+        "npc_name": "Der Gärtner",
+        "start_node": "start",
+        "nodes": {
+          "start": {
+            "text": "The woods... they speak to me. You hear them? The rustling, the groans... they remember. What do you seek in the green hell? A path, or a grave?",
+            "options": [
+              {"text": "I seek a path through the forest.", "next_node": "path_through_woods"},
+              {"text": "Tell me about the woods.", "next_node": "about_woods"},
+              {"text": "I'm looking for a hidden vault.", "next_node": "gaertner_vault_quest"},
+              {"text": "I'll leave you to your whispers. (Goodbye)", "end_dialogue": true}
+            ]
+          },
+          "path_through_woods": {
+            "text": "The woods are dangerous. They test you. But if you listen, they will guide you. Bring me a story from the outside, a true one, and I will show you a safe passage.",
+            "options": [
+              {
+                "text": "I have a story.",
+                "next_node": "tell_story",
+                "condition": {"type": "quest_state", "params": {"quest": "story_for_gaertner", "state": "active"}}
+              },
+              {"text": "I'll find a story for you.", "next_node": "start", "action": "start_story_for_gaertner_quest"},
+              {"text": "I have another question.", "next_node": "start"}
+            ]
+          },
+          "about_woods": {
+            "text": "The trees here are ancient. They saw the bombs fall. They remember the green before the glow. Now, they're... different. Angry, sometimes. But still living. Still growing.",
+            "options": [
+              {"text": "Fascinating.", "next_node": "start"},
+              {"text": "I have another question.", "next_node": "start"}
+            ]
+          },
+          "tell_story": {
+            "text": "Ah, a fresh tale. Sit, listen... (You tell him a story of your travels. He listens intently, his eyes distant.) Thank you, wanderer. That was... a good one. The path is clear. Follow the glowing moss, it will lead you true. And beware the Boar King.",
+            "options": [
+              {"text": "Thank you, Gärtner.", "end_dialogue": true},
+              {"text": "I have another question.", "next_node": "start"}
+            ]
+          },
+          "gaertner_vault_quest": {
+            "text": "A vault, you say? Under Teufelsberg? The woods have whispered of such a place. A silent, forgotten tomb. Dangerous. Very dangerous. If you seek it, you will need a key. One is held by the mutated birds that nest on the highest peaks of Teufelsberg.",
+            "options": [
+              {
+                "text": "I'll look for the key.",
+                "next_node": "start",
+                "action": "start_vault_b12_key_quest",
+                "condition": {"type": "quest_state", "params": {"quest": "vault_b12_key_quest", "state": "not_started"}}
+              },
+              {"text": "I'll be back later.", "next_node": "start"}
+            ]
+          }
+        }
+  },
+    "werkbund_merchant": {
+      "npc_name": "Werkbund Merchant",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Quality goods, fair prices. That is the Werkbund way.",
+          "options": [
+            {"text": "Let's trade.", "end_dialogue": true, "action": "open_shop"},
+            {"text": "Goodbye.", "end_dialogue": true}
+          ]
+        }
+      }
+    },
+    "scavenger_common": {
+      "npc_name": "Scavenger",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Keep moving. This scrap is mine.",
+          "options": [{"text": "Relax, I'm leaving.", "end_dialogue": true}]
+        }
+      }
+    },
+    "iron_ring_patrol": {
+      "npc_name": "Iron Ring Patrol",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Move along, citizen. Loitering is prohibited.",
+          "options": [{"text": "Understood.", "end_dialogue": true}]
+        }
+      }
+    },
+    "execution_vendor": {
+      "npc_name": "Execution Vendor",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Fresh gear! Only slightly bloodstained! Get it while it's... well, the previous owner is definitely cold.",
+          "options": [
+            {"text": "Show me what you have.", "end_dialogue": true, "action": "open_shop"},
+            {"text": "No thanks.", "end_dialogue": true}
+          ]
+        }
+      }
+    },
+    "feld_commune_guard": {
+      "npc_name": "Commune Guard",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "We share what we have, but we protect it too. Peace be with you.",
+          "options": [{"text": "And with you.", "end_dialogue": true}]
+        }
+      }
+    },
+    "bundesritter_knight": {
+      "npc_name": "Bundesritter Knight",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Stand tall, squire. The Citadel watches over all.",
+          "options": [{"text": "For the Citadel.", "end_dialogue": true}]
+        }
+      }
+    },
+    "kreuzberg_klaus_refugee": {
+      "npc_name": "Refugee",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "We fled the fighting in SO36. Klaus is still there, spinning records while the world burns.",
+          "options": [{"text": "Stay safe.", "end_dialogue": true}]
+        }
+      }
+    },
+    "schattenvolk_listener": {
+      "npc_name": "Schattenvolk Listener",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Shhh. The walls have ears. And we are the ears.",
+          "options": [{"text": "...", "end_dialogue": true}]
+        }
+      }
+    },
+    "phantom_echo": {
+      "npc_name": "Phantom Echo",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "[A whisper on the wind] ...leave... us...",
+          "options": [{"text": "Who's there?", "end_dialogue": true}]
+        }
+      }
+    },
+    "ghoul_vendor_gori": {
+      "npc_name": "Gori",
+      "start_node": "start",
+      "nodes": {
+        "start": {
+          "text": "Smoothskin need supplies? Gori has good stuff. Found in deep tunnels.",
+          "options": [
+            {"text": "Let's trade.", "end_dialogue": true, "action": "open_shop"},
+            {"text": "Not today.", "end_dialogue": true}
+          ]
+        }
+      }
+    }
+  }

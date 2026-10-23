@@ -1,0 +1,49 @@
+{
+    "default": ["radroach", "raider"],
+    "regions": [
+        {
+            "keywords": ["tiergarten"],
+            "enemies": ["radroach", "feral_ghoul", "yao_guai", "rad_wolf"]
+        },
+        {
+            "keywords": ["gorli"],
+            "enemies": ["radroach", "feral_ghoul", "dealer_ghoul"]
+        },
+        {
+            "keywords": ["alexanderplatz"],
+            "enemies": ["feral_ghoul", "raider"]
+        },
+        {
+            "keywords": ["museum"],
+            "enemies": ["super_mutant", "feral_ghoul", "super_mutant_master", "centaur"]
+        },
+        {
+            "keywords": ["mitte", "brandenburg"],
+            "enemies": ["raider", "raider", "feral_ghoul"]
+        },
+        {
+            "keywords": ["u_bahn"],
+            "enemies": ["feral_ghoul", "radroach", "feral_ghoul_reaver"]
+        },
+        {
+            "keywords": ["spandau"],
+            "enemies": ["bundesritter_knight", "rad_wolf"]
+        },
+        {
+            "keywords": ["tempelhof"],
+            "enemies": ["feld_commune_guard", "rad_wolf"]
+        },
+        {
+            "keywords": ["kreuzberg"],
+            "enemies": ["doner_mafia_thug", "dealer_ghoul", "feral_ghoul"]
+        },
+        {
+            "keywords": ["neukolln"],
+            "enemies": ["landlord_ghoul", "feral_ghoul_reaver", "feral_ghoul"]
+        },
+        {
+            "keywords": ["wedding"],
+            "enemies": ["wall_breaker", "raider_scum"]
+        }
+    ]
+}

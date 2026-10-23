@@ -1,0 +1,20 @@
+{
+  "ui": {
+    "scanlines": true,
+    "flicker": true,
+    "glitch_effects": true,
+    "radiation_glow": true,
+    "theme": "green",
+    "compact_hud": true
+  },
+  "accessibility": {
+    "disable_animations": false,
+    "disable_text_distortion": false
+  },
+  "retro_terminal": {
+    "enabled": false,
+    "color": "green",
+    "scanlines": true,
+    "simplified_graphics": true
+  }
+}

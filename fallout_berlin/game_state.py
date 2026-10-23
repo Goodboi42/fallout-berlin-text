@@ -19,7 +19,8 @@ class GameState:
         self.quests = {}
         self.world_flags = {}
         self.inventory = None  # Will be initialized as Inventory object
-        self.game_time = 0  # Days since game start
+        self.companion = None
+        self.game_time = {"day": 0, "hour": 12, "minute": 0}  # Game time tracking
         self.visited_locations = set()
         self.killed_creatures = {}
         self.discovered_locations = set()
@@ -44,7 +45,8 @@ class GameState:
             'quests': quest_data,
             'world_flags': self.world_flags,
             'inventory': self.inventory.to_dict() if hasattr(self.inventory, 'to_dict') else [item.to_dict() for item in (self.inventory if isinstance(self.inventory, list) else [])],
-            'game_time': self.game_time,
+            'companion': self.companion.to_dict() if self.companion else None,
+            'game_time': self.game_time.copy() if isinstance(self.game_time, dict) else {"day": self.game_time, "hour": 12, "minute": 0},
             'visited_locations': list(self.visited_locations),
             'killed_creatures': self.killed_creatures,
             'discovered_locations': list(self.discovered_locations),
@@ -60,6 +62,7 @@ class GameState:
         from fallout_berlin.quest import Quest
         from fallout_berlin.item import Item
         from fallout_berlin.inventory import Inventory
+        from fallout_berlin.companion import Companion
         
         if data.get('player'):
             self.player = Player.from_dict(data['player'])
@@ -86,7 +89,13 @@ class GameState:
             if data.get('inventory'):
                 self.inventory.from_dict(data['inventory'])
         
-        self.game_time = data.get('game_time', 0)
+        if data.get('companion'):
+            self.companion = Companion.from_dict(data['companion'])
+        
+        self.game_time = data.get('game_time', {"day": 0, "hour": 12, "minute": 0})
+        # Migration: if loading old save where game_time was int
+        if isinstance(self.game_time, int):
+            self.game_time = {"day": self.game_time, "hour": 12, "minute": 0}
         self.visited_locations = set(data.get('visited_locations', []))
         self.killed_creatures = data.get('killed_creatures', {})
         self.discovered_locations = set(data.get('discovered_locations', []))
@@ -178,11 +187,19 @@ class GameState:
             return "Liked"
         elif rep >= 25:
             return "Accepted"
-        elif rep >= 0:
-            return "Neutral"
         elif rep >= -25:
-            return "Disliked"
+            return "Neutral"
         elif rep >= -50:
+            return "Disliked"
+        elif rep >= -75:
             return "Hated"
         else:
             return "Vilified"
+
+    def is_faction_hostile(self, faction: str) -> bool:
+        """Check if a faction is hostile towards the player"""
+        return self.get_faction_reputation(faction) <= -50
+
+    def is_faction_ally(self, faction: str) -> bool:
+        """Check if a faction is allied with the player"""
+        return self.get_faction_reputation(faction) >= 50

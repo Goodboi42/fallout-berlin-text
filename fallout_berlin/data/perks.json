@@ -1,0 +1,238 @@
+{
+  "perks": [
+    {
+      "id": "iron_fist",
+      "name": "Iron Fist",
+      "type": "perk",
+      "desc": "+20% Unarmed Damage",
+      "req": [{"stat": "strength", "value": 3, "op": ">="}],
+      "req_text": "Strength >= 3",
+      "effects": [{"type": "stat_mod", "stat": "unarmed_damage_mult", "value": 0.2, "modifier": "add"}]
+    },
+    {
+      "id": "truemmerfrau",
+      "name": "Trümmerfrau",
+      "type": "perk",
+      "desc": "+50 lbs Carry Weight. A symbol of Berlin's rebuilding spirit.",
+      "req": [{"stat": "strength", "value": 4, "op": ">="}],
+      "req_text": "Strength >= 4",
+      "effects": [{"type": "stat_mod", "stat": "carry_weight", "value": 50, "modifier": "add"}]
+    },
+    {
+      "id": "commando",
+      "name": "Commando",
+      "type": "perk",
+      "desc": "+20% Damage with Rifles/Automatics",
+      "req": [{"stat": "agility", "value": 5, "op": ">="}],
+      "req_text": "Agility >= 5",
+      "effects": [{"type": "stat_mod", "stat": "rifle_damage_mult", "value": 0.2, "modifier": "add"}]
+    },
+    {
+      "id": "sniper",
+      "name": "Sniper",
+      "type": "perk",
+      "desc": "+15% Hit Chance with Rifles",
+      "req": [{"stat": "perception", "value": 6, "op": ">="}],
+      "req_text": "Perception >= 6",
+      "effects": [{"type": "stat_mod", "stat": "rifle_hit_chance", "value": 15, "modifier": "add"}]
+    },
+    {
+      "id": "toughness",
+      "name": "Toughness",
+      "type": "perk",
+      "desc": "+10% Damage Resistance",
+      "req": [{"stat": "endurance", "value": 3, "op": ">="}],
+      "req_text": "Endurance >= 3",
+      "effects": [{"type": "stat_mod", "stat": "damage_resistance_mult", "value": 0.1, "modifier": "add"}]
+    },
+    {
+      "id": "lifegiver",
+      "name": "Lifegiver",
+      "type": "perk",
+      "desc": "+20 Max HP",
+      "req": [{"stat": "endurance", "value": 4, "op": ">="}],
+      "req_text": "Endurance >= 4",
+      "effects": [{"type": "stat_mod", "stat": "max_hp", "value": 20, "modifier": "add"}]
+    },
+    {
+      "id": "medic",
+      "name": "Medic",
+      "type": "perk",
+      "desc": "Stimpaks heal 50% more",
+      "req": [{"stat": "intelligence", "value": 4, "op": ">="}],
+      "req_text": "Intelligence >= 4",
+      "effects": [{"type": "stat_mod", "stat": "heal_mult", "value": 0.5, "modifier": "add"}]
+    },
+    {
+      "id": "techno_viking",
+      "name": "Techno Viking",
+      "type": "perk",
+      "desc": "+5 Melee Dmg, +10% Flee Chance. You dance through danger.",
+      "req": [
+        {"stat": "strength", "value": 5, "op": ">="},
+        {"stat": "endurance", "value": 5, "op": ">="}
+      ],
+      "req_text": "Strength >= 5, Endurance >= 5",
+      "effects": [
+        {"type": "stat_mod", "stat": "melee_damage", "value": 5, "modifier": "add"},
+        {"type": "stat_mod", "stat": "flee_chance", "value": 10, "modifier": "add"}
+      ]
+    },
+    {
+      "id": "better_criticals",
+      "name": "Better Criticals",
+      "type": "perk",
+      "desc": "+50% Critical Damage",
+      "req": [{"stat": "luck", "value": 6, "op": ">="}],
+      "req_text": "Luck >= 6",
+      "effects": [{"type": "stat_mod", "stat": "crit_damage_mult", "value": 0.5, "modifier": "add"}]
+    },
+    {
+      "id": "hacker",
+      "name": "Hacker",
+      "type": "perk",
+      "desc": "Can hack terminals (Intelligence 4+)",
+      "req": [{"stat": "intelligence", "value": 4, "op": ">="}],
+      "req_text": "Intelligence >= 4",
+      "effects": [{"type": "unlock_mechanic", "mechanic": "hacking"}]
+    },
+    {
+      "id": "chemist",
+      "name": "Chemist",
+      "type": "perk",
+      "desc": "Can craft advanced chems (Intelligence 6+)",
+      "req": [{"stat": "intelligence", "value": 6, "op": ">="}],
+      "req_text": "Intelligence >= 6",
+      "effects": [{"type": "unlock_mechanic", "mechanic": "chem_crafting"}]
+    },
+    {
+      "id": "rad_resistant",
+      "name": "Rad Resistant",
+      "type": "perk",
+      "desc": "+15% Radiation Resistance",
+      "req": [{"stat": "endurance", "value": 6, "op": ">="}],
+      "req_text": "Endurance >= 6",
+      "effects": [{"type": "stat_mod", "stat": "radiation_resistance", "value": 15, "modifier": "add"}]
+    },
+    {
+      "id": "lead_belly",
+      "name": "Lead Belly",
+      "type": "perk",
+      "desc": "Take no radiation from eating irradiated food or drinking irradiated water.",
+      "req": [{"stat": "endurance", "value": 5, "op": ">="}],
+      "req_text": "Endurance >= 5",
+      "effects": [{"type": "immunity", "mechanic": "ingested_radiation"}]
+    },
+    {
+      "id": "ghoulish",
+      "name": "Ghoulish",
+      "type": "perk",
+      "desc": "Radiation now slowly regenerates your health.",
+      "req": [{"stat": "endurance", "value": 7, "op": ">="}],
+      "req_text": "Endurance >= 7",
+      "effects": [{"type": "mechanic_mod", "mechanic": "rad_regen", "value": true}]
+    },
+    {
+      "id": "berliner_schnauze",
+      "name": "Berliner Schnauze",
+      "type": "perk",
+      "desc": "+15% Speech and Barter success. Unique dialogue options in Berlin.",
+      "req": [{"stat": "charisma", "value": 6, "op": ">="}],
+      "req_text": "Charisma >= 6",
+      "effects": [
+        {"type": "stat_mod", "stat": "speech_skill", "value": 15, "modifier": "add"},
+        {"type": "stat_mod", "stat": "barter_skill", "value": 15, "modifier": "add"},
+        {"type": "dialogue_tag", "tag": "berliner_schnauze"}
+      ]
+    },
+    {
+      "id": "u_bahn_explorer",
+      "name": "U-Bahn Explorer",
+      "type": "perk",
+      "desc": "Increased chance to find rare scrap in tunnels and ruins.",
+      "req": [{"stat": "perception", "value": 5, "op": ">="}],
+      "req_text": "Perception >= 5",
+      "effects": [{"type": "loot_bonus", "location_tag": "underground", "value": 0.2}]
+    },
+    {
+      "id": "checkpoint_guard",
+      "name": "Checkpoint Guard",
+      "type": "perk",
+      "desc": "+20% Damage Resistance while standing still or in defensive positions.",
+      "req": [
+        {"stat": "strength", "value": 6, "op": ">="},
+        {"stat": "perception", "value": 6, "op": ">="}
+      ],
+      "req_text": "Strength >= 6, Perception >= 6",
+      "effects": [{"type": "conditional_stat_mod", "condition": "stationary", "stat": "damage_resistance", "value": 20}]
+    },
+    {
+      "id": "spaeti_regular",
+      "name": "Späti Regular",
+      "type": "perk",
+      "desc": "10% discount at all traders and unique access to 'under-the-counter' items.",
+      "req": [{"stat": "charisma", "value": 5, "op": ">="}],
+      "req_text": "Charisma >= 5",
+      "effects": [{"type": "price_mult", "value": 0.9}]
+    },
+    {
+      "id": "strong_back",
+      "name": "Strong Back",
+      "type": "perk",
+      "desc": "+50 Carry Weight",
+      "req": [{"stat": "strength", "value": 5, "op": ">="}],
+      "req_text": "Strength >= 5",
+      "effects": [
+        {
+          "type": "stat_mod",
+          "stat": "carry_weight",
+          "modifier": "add",
+          "value": 50
+        }
+      ]
+    }
+  ],
+  "traits": [
+    {
+      "id": "small_frame",
+      "name": "Small Frame",
+      "type": "trait",
+      "desc": "+1 Agility, but your limbs are more easily crippled and Carry Weight is reduced by 30 lbs.",
+      "effects": [
+        {"type": "stat_mod", "stat": "agility", "value": 1, "modifier": "add"},
+        {"type": "stat_mod", "stat": "carry_weight", "value": -30, "modifier": "add"}
+      ]
+    },
+    {
+      "id": "kamikaze",
+      "name": "Kamikaze",
+      "type": "trait",
+      "desc": "+10% Damage dealt, but -15% Damage Resistance. You live fast.",
+      "effects": [
+        {"type": "stat_mod", "stat": "damage_mult", "value": 0.1, "modifier": "add"},
+        {"type": "stat_mod", "stat": "damage_resistance_mult", "value": -0.15, "modifier": "add"}
+      ]
+    },
+    {
+      "id": "heavy_handed",
+      "name": "Heavy Handed",
+      "type": "trait",
+      "desc": "Melee attacks do +20% damage, but Critical Hit damage is reduced by 30%.",
+      "effects": [
+        {"type": "stat_mod", "stat": "melee_damage_mult", "value": 0.2, "modifier": "add"},
+        {"type": "stat_mod", "stat": "crit_damage_mult", "value": -0.3, "modifier": "add"}
+      ]
+    },
+    {
+      "id": "berlin_native",
+      "name": "Berlin Native",
+      "type": "trait",
+      "desc": "You know the city. +10% Map Travel Speed and better prices, but -10 Reputation with outside factions (Iron Ring).",
+      "effects": [
+        {"type": "stat_mod", "stat": "travel_speed", "value": 0.1, "modifier": "add"},
+        {"type": "price_mult", "value": 0.9},
+        {"type": "rep_mod", "faction": "Eisenring", "value": -10}
+      ]
+    }
+  ]
+}

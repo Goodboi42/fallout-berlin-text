@@ -1,65 +1,267 @@
 {
+  "berlin_core_awakening": {
+    "title": "The Berlin Core: Awakening",
+    "description": "You've heard whispers of a powerful fusion core beneath the Fernsehturm, capable of restoring Berlin. But first, you need to understand the city and its factions.",
+    "start_conditions": [
+      {"type": "world_flag_set", "params": {"flag": "player_spawned", "value": true}}
+    ],
+    "objectives": [
+      {"id": "explore_city_factions", "description": "Engage with key faction leaders: Generaloberst Von Stahl (Reichstag), Mother Renate (Tempelhof), Merchant Jakob (Potsdamer Platz), Der Schwertmeister (Spandau Citadel), The Archivist (Stasi Museum), and Iron-Tooth Lena (Wedding Ghetto).", "trigger_conditions": [
+        {"type": "talked_to_npc", "params": {"npc": "general_von_stahl"}},
+        {"type": "talked_to_npc", "params": {"npc": "mother_renate"}},
+        {"type": "talked_to_npc", "params": {"npc": "merchant_jakob"}},
+        {"type": "talked_to_npc", "params": {"npc": "schwertmeister"}},
+        {"type": "talked_to_npc", "params": {"npc": "the_archivist"}},
+        {"type": "talked_to_npc", "params": {"npc": "lena"}}
+      ]},
+      {"id": "learn_about_core", "description": "Gather information about The Berlin Core.", "trigger_conditions": [
+        {"type": "world_flag_set", "params": {"flag": "learned_about_core", "value": true}}
+      ]}
+    ],
+    "rewards": {"experience": 1000, "caps": 200}
+  },
   "first_steps": {
-    "title": "First Steps in the Ash City",
-    "description": "You've survived the vault exit. Now you need to find your footing in the remains of Berlin.",
-    "objectives": [
-      {
-        "id": "explore_market",
-        "description": "Explore the Checkpoint Charlie Market",
-        "optional": false
-      },
-      {
-        "id": "talk_hans",
-        "description": "Talk to Hans the Trader",
-        "optional": false
-      },
-      {
-        "id": "learn_factions",
-        "description": "Learn about the Iron Ring and Feld Commune",
-        "optional": false
-      }
+    "title": "First Steps",
+    "description": "Learn to survive in the Berlin wasteland.",
+    "start_conditions": [
+      {"type": "world_flag_set", "params": {"flag": "player_spawned", "value": true}}
     ],
-    "rewards": {
-      "experience": 150,
-      "caps": 50
-    }
+    "objectives": [
+      {"id": "explore_market", "description": "Explore Checkpoint Charlie Market", "trigger_conditions": [{"type": "at_location", "params": {"location": "checkpoint_charlie"}}]}
+    ],
+    "rewards": {"experience": 100, "caps": 50}
   },
-  "currywurst_run": {
-    "title": "The Currywurst Cravings",
-    "description": "A hungry scavenger at Kotti is dreaming of pre-war flavor. Or at least the post-war approximation.",
-    "objectives": [
-      {
-        "id": "get_currywurst",
-        "description": "Acquire an Icy Currywurst",
-        "optional": false
-      },
-      {
-        "id": "deliver_currywurst",
-        "description": "Deliver the snack to 'Hungry Klaus' at Kotti",
-        "optional": false
-      }
+  "lost_currywurst": {
+    "title": "The Lost Currywurst",
+    "description": "Find the legendary preserved Currywurst for Trader Charlie.",
+    "start_conditions": [
+      {"type": "quest_state", "params": {"quest": "first_steps", "state": "completed"}},
+      {"type": "talked_to_npc", "params": {"npc": "trader_charlie"}},
+      {"type": "world_flag_set", "params": {"flag": "trader_charlie_asked_currywurst", "value": true}}
     ],
-    "rewards": {
-      "experience": 200,
-      "items": ["scrap_metal", "scrap_metal"]
-    }
+    "objectives": [
+      {"id": "find_currywurst", "description": "Search Alexanderplatz for the Currywurst", "trigger_conditions": [{"type": "has_item", "params": {"item": "currywurst"}}]}
+    ],
+    "rewards": {"experience": 300, "caps": 100, "item_reward_id": "currywurst"}
   },
-  "u1_clearance": {
-    "title": "Cleaning the U1",
-    "description": "The Schattenvolk want to expand their tunnels, but a nest of ghouls is blocking the U1 line.",
-    "objectives": [
-      {
-        "id": "clear_tunnels",
-        "description": "Kill 3 Feral Ghouls in the U-Bahn Tunnels",
-        "optional": false
-      }
+  "green_thumb": {
+    "title": "Green Thumb",
+    "description": "Mother Renate needs mutated seeds from the Tiergarten. They are fungus-choked and require purification, and Radhunde are threatening the nursery.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "mother_renate"}},
+      {"type": "world_flag_set", "params": {"flag": "mother_renate_asked_seeds", "value": true}}
     ],
-    "rewards": {
-      "experience": 500,
-      "caps": 200,
-      "faction_rep": {
-        "Schattenvolk": 20
-      }
-    }
+    "objectives": [
+      {"id": "find_seeds", "description": "Find Mutated Seeds in Tiergarten", "trigger_conditions": [{"type": "has_item", "params": {"item": "mutated_seeds"}}]}, 
+      {"id": "purify_seeds", "description": "Take the Mutated Seeds to Mehmet the Mutant in Kreuzberg for purification", "trigger_conditions": [{"type": "has_item", "params": {"item": "purified_seeds"}}]}, 
+      {"id": "clear_radhunde", "description": "Clear the Radhunde pack from the North Hangar nursery (Tempelhof)", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "north_hangar_clear", "value": true}}]}, 
+      {"id": "return_purified_seeds", "description": "Return the purified seeds to Mother Renate", "trigger_conditions": [{"type": "talked_to_npc", "params": {"npc": "mother_renate"}}, {"type": "quest_state", "params": {"quest": "green_thumb", "state": "completed"}}]}
+    ],
+    "rewards": {"experience": 500, "caps": 100, "items": [{"item_id": "mutated_fruit", "quantity": 3}, {"item_id": "soil_analysis_kit", "quantity": 1}]}
+  },
+  "iron_will": {
+    "title": "Iron Will",
+    "description": "General Von Stahl wants you to retrieve a data drive containing information on 'Phantom Citizens' from a fallen scout in the Fernsehturm.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "general_von_stahl"}},
+      {"type": "world_flag_set", "params": {"flag": "general_von_stahl_asked_data", "value": true}}
+    ],
+    "objectives": [
+      {"id": "retrieve_data", "description": "Find the Iron Ring Data Drive in Fernsehturm", "trigger_conditions": [{"type": "has_item", "params": {"item": "iron_ring_data"}}]}
+    ],
+    "rewards": {"experience": 200, "items": [{"item_id": "ordnung_muss_sein_rifle", "quantity": 1}, {"item_id": "fusion_cell", "quantity": 50}]}
+  },
+  "bureaucrats_nightmare": {
+    "title": "The Bureaucrat's Nightmare",
+    "description": "Hauptmann Richter needs proper paperwork filed to authorize a supply run. This involves navigating the labyrinthine Bürgeramt.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "hauptmann_richter"}},
+      {"type": "world_flag_set", "params": {"flag": "hauptmann_richter_asked_form", "value": true}}
+    ],
+    "objectives": [
+      {"id": "find_form_a", "description": "Find Anmeldung Form 27-B in the Mitte Ruins", "trigger_conditions": [{"type": "has_item", "params": {"item": "anmeldung_form"}}]}, 
+      {"id": "get_stamp", "description": "Get the form stamped by the Werkbund at Brandenburg Gate", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "form_stamped_werkbund", "value": true}}]}, 
+      {"id": "return_form", "description": "Return the completed paperwork to Richter", "trigger_conditions": [{"type": "talked_to_npc", "params": {"npc": "hauptmann_richter"}}, {"type": "quest_state", "params": {"quest": "bureaucrats_nightmare", "state": "completed"}}]}
+    ],
+    "rewards": {"experience": 250, "caps": 75, "items": [{"item_id": "stimpak", "quantity": 1}]}
+  },
+  "the_perfect_gift": {
+    "title": "The Perfect Gift",
+    "description": "Retrieve a pre-war engagement ring from the KaDeWe ruins for a romantic scavenger, navigating the dangerous Kaufhaus-Feral-Ghouls.",
+    "start_conditions": [
+      {"type": "world_flag_set", "params": {"flag": "quest_perfect_gift_available", "value": true}}
+    ],
+    "objectives": [
+      {"id": "search_kadewe", "description": "Search Floor 6 of KaDeWe Ruins", "trigger_conditions": [{"type": "at_location", "params": {"location": "kadewe_ruins"}}, {"type": "world_flag_set", "params": {"flag": "searched_kadewe_6th_floor", "value": true}}]}, 
+      {"id": "find_ring", "description": "Find the Pre-War Engagement Ring", "trigger_conditions": [{"type": "has_item", "params": {"item": "pre_war_engagement_ring"}}]}
+    ],
+    "rewards": {"experience": 300, "caps": 150, "items": [{"item_id": "pre_war_engagement_ring", "quantity": 1}]}
+  },
+  "the_theft_of_berlin": {
+    "title": "The Theft of Berlin",
+    "description": "Steal the Nefertiti Bust from Museum Island, which is now a Super Mutant stronghold.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "professor_muller"}},
+      {"type": "world_flag_set", "params": {"flag": "professor_muller_asked_bust", "value": true}}
+    ],
+    "objectives": [
+      {"id": "infiltrate_museum", "description": "Infiltrate the Neues Museum on Museum Island", "trigger_conditions": [{"type": "at_location", "params": {"location": "museum_island"}}]}, 
+      {"id": "steal_bust", "description": "Steal the Nefertiti Bust", "trigger_conditions": [{"type": "has_item", "params": {"item": "nefertiti_bust"}}]}
+    ],
+    "rewards": {"experience": 500, "items": [{"item_id": "nefertiti_bust", "quantity": 1}, {"item_id": "stasi_file", "quantity": 1}]}
+  },
+  "ringbahn_restoration": {
+    "title": "The Ringbahn Restoration",
+    "description": "Repair the three major breaks in the 37km S-Bahn loop to enable fast travel and resource flow across Berlin.",
+    "start_conditions": [
+      {"type": "world_flag_set", "params": {"flag": "ringbahn_damaged", "value": true}}
+    ],
+    "objectives": [
+      {"id": "clear_gleisdreieck", "description": "Clear the 'Gleisdreieck' of Radhunde", "trigger_conditions": [{"type": "killed_creature", "params": {"creature": "radhund", "min_count": 10}}]}, 
+      {"id": "negotiate_rails", "description": "Negotiate with the Bundesritter for replacement rails (Spandau Citadel)", "trigger_conditions": [{"type": "talked_to_npc", "params": {"npc": "schwertmeister"}}, {"type": "world_flag_set", "params": {"flag": "rails_negotiated", "value": true}}]}, 
+      {"id": "defend_crew", "description": "Defend the repair crew from a Wall Breaker assault", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "defense_successful", "value": true}}]}
+    ],
+    "rewards": {"experience": 1500, "caps": 500, "items": [{"item_id": "mp_gauss", "quantity": 1}]}
+  },
+  "bureaucracy_blues": {
+    "title": "Bureaucracy Blues",
+    "description": "Obtain a 'Universal Crossing Permit' by navigating the Bürgeramt's insane requirements, including a combat trial and a missing signature.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "the_archivist"}},
+      {"type": "world_flag_set", "params": {"flag": "archivist_asked_permit", "value": true}}
+    ],
+    "objectives": [
+      {"id": "fill_form_27b", "description": "Fill out Anmeldung Form 27-B at the Auto-Clerk (Bürgeramt)", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "form_27b_filled", "value": true}}]}, 
+      {"id": "combat_trial", "description": "Get a 'Physical Aptitude Stamp' (requires a combat trial)", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "combat_trial_passed", "value": true}}]}, 
+      {"id": "find_signature", "description": "Find the 'Missing Signature' in the flooded basement of the Formulars-Komplex", "trigger_conditions": [{"type": "has_item", "params": {"item": "missing_signature_document"}}]}, 
+      {"id": "return_permit_papers", "description": "Return the completed permit papers to The Archivist", "trigger_conditions": [{"type": "talked_to_npc", "params": {"npc": "the_archivist"}}, {"type": "quest_state", "params": {"quest": "bureaucracy_blues", "state": "completed"}}]}
+    ],
+    "rewards": {"experience": 1200, "items": [{"item_id": "passierschein_a39", "quantity": 1}, {"item_id": "stasi_file", "quantity": 1}]}
+  },
+  "the_pfand_path": {
+    "title": "The Pfand Path",
+    "description": "Learn about the unique Pfand economy of Berlin by collecting bottles, finding the Pfandautomat, and exchanging them for a special döner.",
+    "start_conditions": [
+      {"type": "world_flag_set", "params": {"flag": "pfand_system_introduced", "value": true}}
+    ],
+    "objectives": [
+      {"id": "collect_bottles", "description": "Collect 5 empty bottles in the Mitte Ruins", "trigger_conditions": [{"type": "has_item", "params": {"item": "empty_bottle", "min_quantity": 5}}]}, 
+      {"id": "find_kotti_pfand", "description": "Find the Kotti Pfandautomat", "trigger_conditions": [{"type": "at_location", "params": {"location": "pfand_station_kotti"}}]}, 
+      {"id": "exchange_bottles", "description": "Exchange bottles for Pfand-Tokens", "trigger_conditions": [{"type": "has_item", "params": {"item": "pfand_token", "min_quantity": 5}}]}, 
+      {"id": "buy_special_doner", "description": "Buy a 'Döner (Special Meat)' from Mehmet the Mutant in Kreuzberg", "trigger_conditions": [{"type": "has_item", "params": {"item": "doner_special_meat"}}]}
+    ],
+    "rewards": {"experience": 500, "items": [{"item_id": "pfand_token", "quantity": 5}]}
+  },
+  "unit_247_repair": {
+    "title": "Unit 247's Malfunction",
+    "description": "Unit 247, a Broker Protectron, is malfunctioning and needs spare parts to access non-critical intel.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "unit_247"}},
+      {"type": "world_flag_set", "params": {"flag": "unit_247_asked_parts", "value": true}}
+    ],
+    "objectives": [
+      {"id": "find_spare_parts", "description": "Find Protectron Spare Parts", "trigger_conditions": [{"type": "has_item", "params": {"item": "protectron_spare_parts"}}]}, 
+      {"id": "return_parts", "description": "Return the parts to Unit 247", "trigger_conditions": [{"type": "talked_to_npc", "params": {"npc": "unit_247"}}, {"type": "quest_state", "params": {"quest": "unit_247_repair", "state": "completed"}}]}
+    ],
+    "rewards": {"experience": 350, "caps": 100}
+  },
+  "klaus_record_hunt": {
+    "title": "Klaus's Record Hunt",
+    "description": "Kreuzberg-Klaus, the ghoul DJ, wants you to retrieve his stolen records from a former Club-Mate storage facility.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "kreuzberg_klaus"}},
+      {"type": "world_flag_set", "params": {"flag": "klaus_asked_records", "value": true}}
+    ],
+    "objectives": [
+      {"id": "find_records", "description": "Find Klaus's stolen records", "trigger_conditions": [{"type": "has_item", "params": {"item": "pre_war_records", "min_quantity": 1}}]} 
+    ],
+    "rewards": {"experience": 400, "items": [{"item_id": "club_mate", "quantity": 2}]}
+  },
+  "doner_mafia_protection": {
+    "title": "Döner Mafia Protection",
+    "description": "Patron Osman needs you to clear out Wall Breaker raiders who are interfering with his döner supply routes from Wedding.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "patron_osman"}},
+      {"type": "world_flag_set", "params": {"flag": "osman_asked_protection", "value": true}}
+    ],
+    "objectives": [
+      {"id": "clear_raiders", "description": "Clear 5 Wall Breaker Raiders from Wedding supply routes", "trigger_conditions": [{"type": "killed_creature", "params": {"creature": "wall_breaker_raider", "min_count": 5}}]} 
+    ],
+    "rewards": {"experience": 600, "caps": 200, "items": [{"item_id": "mutant_doener", "quantity": 3}]}
+  },
+  "story_for_gaertner": {
+    "title": "A Story for the Gärtner",
+    "description": "Der Gärtner, the hermit of Grunewald, will guide you through the dangerous forest if you tell him a true story from the outside.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "der_gaertner"}},
+      {"type": "world_flag_set", "params": {"flag": "gaertner_asked_story", "value": true}}
+    ],
+    "objectives": [
+      {"id": "tell_story", "description": "Tell Der Gärtner a true story from the outside", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "story_told_gaertner", "value": true}}]} 
+    ],
+    "rewards": {"experience": 200, "perks": ["grunewald_passage_perk"]}
+  },
+  "vault_b12_key_quest": {
+    "title": "The Vault B-12 Key",
+    "description": "Der Gärtner has hinted at a key to Vault B-12, hidden in Teufelsberg. You need to find it from the mutated birds that nest there.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "der_gaertner"}},
+      {"type": "world_flag_set", "params": {"flag": "gaertner_hinted_vault_key", "value": true}}
+    ],
+    "objectives": [
+      {"id": "find_key", "description": "Find the Vault B-12 Key from mutated birds on Teufelsberg", "trigger_conditions": [{"type": "has_item", "params": {"item": "vault_b12_key"}}]} 
+    ],
+    "rewards": {"experience": 750}
+  },
+  "richter_moral_dilemma": {
+    "title": "Richter's Moral Dilemma",
+    "description": "Hauptmann Richter, the Iron Ring officer, is suffering from nightly breakdowns. You can either exploit his weakness for your own gain or try to help him.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "hauptmann_richter"}},
+      {"type": "world_flag_set", "params": {"flag": "richter_breakdown_revealed", "value": true}}
+    ],
+    "objectives": [
+      {"id": "exploit_richter", "description": "Exploit Richter's weakness for personal gain (e.g., gain access to Iron Ring supplies)", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "richter_exploited", "value": true}}]}, 
+      {"id": "help_richter", "description": "Help Richter overcome his mental distress", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "richter_helped", "value": true}}]} 
+    ],
+    "rewards": {"experience": 500, "choice_rewards": {"exploit_richter": {"items": [{"item_id": "eisenpanzer", "quantity": 1}]}, "help_richter": {"perks": ["iron_ring_reputation_gain"]}}}
+  },
+  "squire_trial": {
+    "title": "The Squire's Trial",
+    "description": "Der Schwertmeister challenges you to a trial to prove your worth and begin your journey as a Bundesritter Squire.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "schwertmeister"}},
+      {"type": "world_flag_set", "params": {"flag": "schwertmeister_offered_trial", "value": true}}
+    ],
+    "objectives": [
+      {"id": "defeat_training_bot", "description": "Defeat the Bundesritter training bot in the arena", "trigger_conditions": [{"type": "killed_creature", "params": {"creature": "training_bot", "min_count": 1}}]}, 
+      {"id": "retrieve_ancient_text", "description": "Retrieve an ancient German history text from the Spandau archives", "trigger_conditions": [{"type": "has_item", "params": {"item": "ancient_german_text"}}]} 
+    ],
+    "rewards": {"experience": 400, "items": [{"item_id": "knights_oath", "quantity": 1}], "perks": ["bundesritter_squire_status"]}
+  },
+  "archive_job": {
+    "title": "The Archive Job",
+    "description": "The Archivist of the Schattenvolk needs you to retrieve a specific pre-war data chip from the heavily guarded lower levels of the Stasi Museum.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "the_archivist"}},
+      {"type": "world_flag_set", "params": {"flag": "archivist_offered_job", "value": true}}
+    ],
+    "objectives": [
+      {"id": "infiltrate_stasi_archives", "description": "Infiltrate the secure Stasi archives (Level 9-15)", "trigger_conditions": [{"type": "at_location", "params": {"location": "stasi_museum_archives"}}]}, 
+      {"id": "retrieve_data_chip", "description": "Retrieve the 'Pre-War Bioweapon Data Chip'", "trigger_conditions": [{"type": "has_item", "params": {"item": "pre_war_bioweapon_data_chip"}}]} 
+    ],
+    "rewards": {"experience": 800, "items": [{"item_id": "shadow_cloak", "quantity": 1}], "faction_reputation": {"Schattenvolk": 100}}
+  },
+  "lena_demolition_mission": {
+    "title": "Lena's Demolition Mission",
+    "description": "Iron-Tooth Lena wants you to demonstrate your loyalty to the Wall Breakers by destroying a symbolic structure of Iron Ring propaganda near Alexanderplatz.",
+    "start_conditions": [
+      {"type": "talked_to_npc", "params": {"npc": "lena"}},
+      {"type": "world_flag_set", "params": {"flag": "lena_offered_demolition", "value": true}}
+    ],
+    "objectives": [
+      {"id": "destroy_propaganda_tower", "description": "Destroy the Iron Ring Propaganda Tower near Alexanderplatz", "trigger_conditions": [{"type": "world_flag_set", "params": {"flag": "propaganda_tower_destroyed", "value": true}}]} 
+    ],
+    "rewards": {"experience": 700, "caps": 250, "items": [{"item_id": "der_hammer", "quantity": 1}]}
   }
 }

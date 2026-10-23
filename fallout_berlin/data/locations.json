@@ -1,110 +1,593 @@
 {
   "checkpoint_charlie": {
     "name": "Checkpoint Charlie Market",
-    "description": "A bustling neutral trading hub. The old checkpoint has been converted into a market where all factions can trade safely. The remains of the iconic 'YOU ARE LEAVING THE AMERICAN SECTOR' sign now serves as a menu for the local soup kitchen. No weapons are allowed inside.",
+    "description": "A bustling neutral trading hub under the watchful eye of 'The Broker'. His UN-blue Protectrons enforce the peace with lethal efficiency. The old checkpoint has been converted into a market where all factions can trade safely. The remains of the iconic 'YOU ARE LEAVING THE AMERICAN SECTOR' sign now serves as a menu for the local soup kitchen.",
     "connections": {
       "north": "mitte_ruins",
-      "south": "kotti"
+      "south": "kotti",
+      "down": "u_bahn_tunnel"
     },
-    "npcs": ["trader_charlie"]
+    "npcs": ["trader_charlie", "unit_247"],
+    "items": ["empty_bottle", "leather_jacket", "brass_knuckles"],
+    "ascii_map": "  [Mitte Ruins]\n        ^\n        |\n[Checkpoint Charlie] --- Market\n        |\n        v\n     [Kotti]",
+    "art": "checkpoint_charlie"
   },
   "mitte_ruins": {
     "name": "Mitte Ruins",
     "description": "The heart of pre-war Berlin. Skeletons of grand buildings like the Humboldt University loom over streets filled with rusted Trabis and cratered asphalt.",
     "connections": {
       "south": "checkpoint_charlie",
-      "north": "brandenburg_gate",
-      "east": "alexanderplatz",
-      "west": "u_bahn_tunnel"
+      "north": "museum_island",
+      "west": "brandenburg_gate",
+      "east": "alexanderplatz"
     },
-    "items": ["scrap_metal", "empty_bottle"]
+    "items": ["scrap_metal", "empty_bottle", "pfand_bottle"],
+    "npcs": ["scavenger_hans"],
+    "art": "mitte_ruins"
   },
   "brandenburg_gate": {
     "name": "Brandenburg Gate",
-    "description": "Once a symbol of unity, now a grim fortress. Raider banners flutter from the tops of the Doric columns. The Quadriga is gone, replaced by a jagged crown of rebar and skulls. The 'No Man's Land' has returned, but with much more literal teeth.",
+    "description": "Once a symbol of unity, now the hub of the Werkbund (Free Traders' Guild). Merchant carts and scavengers with toolbox backpacks crowd the plaza. The Quadriga is gone, replaced by a crane used for moving heavy salvage. It is a rare spot of commerce in the Ash City.",
     "connections": {
-      "south": "mitte_ruins"
+      "east": "mitte_ruins",
+      "west": "tiergarten",
+      "south": "potsdamer_platz"
     },
     "properties": {
-      "hostile": true
+      "hostile": false,
+      "faction": "Werkbund"
     },
-    "enemies": ["raider"]
+    "enemies": [],
+    "npcs": ["werkbund_merchant", "scavenger_common"],
+    "art": "brandenburg_gate"
   },
   "alexanderplatz": {
     "name": "Alexanderplatz",
-    "description": "The Fernsehturm towers above, its sphere glowing with an eerie green light. The World Clock has stopped at the moment the bombs fell. Mutants wander the plaza where crowds once shopped.",
+    "description": "The Fernsehturm towers above, its sphere glowing with an eerie green light. The World Clock has stopped at the moment the bombs fell. At noon, the 'Execution Markets' take place here, selling the gear of the condemned.",
     "connections": {
       "west": "mitte_ruins",
-      "east": "tiergarten"
+      "south": "east_side_gallery",
+      "up": "fernsehturm",
+      "east": "buergeramt",
+      "northwest": "museum_island",
+      "down": "u_bahn_alexanderplatz_u8",
+      "down_tunnel": "u_bahn_tunnel"
     },
     "properties": {
-      "radiation_level": 40
+      "radiation_level": 20
     },
-    "items": ["currywurst"]
+    "items": ["currywurst", "empty_bottle"],
+    "enemies": [],
+    "npcs": ["iron_ring_patrol", "execution_vendor"],
+    "art": "alexanderplatz"
   },
-  "tiergarten": {
-    "name": "Tiergarten",
-    "description": "Once a lush park, now a dense, twisted forest of mutated trees and deadly predators. The Victory Column stands in the distance, a silent witness to the carnage. The trees seem to be leaning towards the Reichstag.",
+  "fernsehturm": {
+    "name": "Fernsehturm Observation Deck",
+    "description": "The highest point in the city. The rotating sphere is now a rusted sniper nest and broadcast tower for the Iron Ring. From here, propaganda about 'Order and Discipline' is beamed across the wasteland. The wind howls through shattered windows.",
     "connections": {
-      "west": "alexanderplatz",
-      "north": "reichstag"
-    },
-    "enemies": ["mongrel", "feral_ghoul"],
-    "items": ["stimpak", "club_mate"]
-  },
-  "reichstag": {
-    "name": "The Reichstag",
-    "description": "The hollowed-out shell of the German parliament. It has been fortified with steel plates and heavy machine gun nests. The glass dome is shattered, looking like a broken eye peering into the sky. This is the heart of the Iron Curtain's territory.",
-    "connections": {
-      "south": "tiergarten"
+      "down": "alexanderplatz"
     },
     "properties": {
       "hostile": true
     },
-    "enemies": ["super_mutant"]
+    "enemies": ["sniper"],
+    "items": ["sniper_rifle", "ammo_308", "iron_ring_data"],
+    "art": "fernsehturm"
+  },
+  "museum_island": {
+    "name": "Museum Island (Mutant Island)",
+    "description": "The Spree river surrounds this island of culture turned into a nightmare. The Pergamon Museum's altar is now used for dark rituals by the local Super Mutant tribe. The Bode Museum is a fortress of marble and flesh.",
+    "connections": {
+      "south": "mitte_ruins",
+      "southeast": "alexanderplatz",
+      "north": "wedding_ghetto"
+    },
+    "properties": {
+      "hostile": true,
+      "radiation_level": 30
+    },
+    "enemies": ["super_mutant_master", "centaur"],
+    "art": "museum_island"
+  },
+  "tiergarten": {
+    "name": "Tiergarten Jungle",
+    "description": "Once a lush park, now a dense, twisted forest. The 'Goldene Finger' watchtower rises from the vines. Mutated swans patrol the ponds, more dangerous than any raider.",
+    "connections": {
+      "east": "brandenburg_gate",
+      "north": "reichstag",
+      "south": "charlottenburg_palace",
+      "down": "u_bahn_tiergarten"
+    },
+    "enemies": ["yao_guai", "deathclaw_runt"],
+    "items": ["stimpak", "club_mate", "mutated_fruit", "pfand_bottle", "mutated_seeds"],
+    "art": "tiergarten"
+  },
+  "reichstag": {
+    "name": "The Reichstag Ruins",
+    "description": "The fortress of the Iron Ring. Steel plates reinforce the hollow shell. Generaloberst Von Stahl commands from within. Entry is strictly regulated by the 'Prussian Protocol'. Without Permit A-38, you are just a target.",
+    "connections": {
+      "south": "tiergarten",
+      "down": "u_bahn_reichstag_u5"
+    },
+    "properties": {
+      "hostile": true,
+      "faction": "Iron Ring"
+    },
+    "enemies": ["super_mutant_warlord"],
+    "npcs": ["general_von_stahl"],
+    "art": "reichstag"
   },
   "kotti": {
     "name": "Kottbusser Tor (Kotti)",
-    "description": "A chaotic nexus of makeshift stalls and dark alleys. The U-Bahn station above ground serves as a sniper nest for the local gang. It smells of ozone, roasted meat, and unwashed bodies. A 'Späti' here sells questionable goods for high prices.",
+    "description": "A chaotic nexus of makeshift stalls and dark alleys. The U-Bahn station above ground serves as a sniper nest for the local gang. It smells of ozone, roasted meat, and unwashed bodies. A 'Spati' here sells questionable goods for high prices. The legendary Pfandautomat is located near the main escalator.",
     "connections": {
       "north": "checkpoint_charlie",
       "east": "gorli",
-      "south": "u_bahn_tunnel"
+      "west": "kreuzberg",
+      "south": "neukolln_catacombs",
+      "enter": "u_bahn_tunnel",
+      "enter_pfand": "pfand_station_kotti"
     },
-    "items": ["adhesive", "spati_token"]
+    "items": ["adhesive", "spati_token", "doner_kebab", "club_mate", "pfand_bottle", "pfand_bottle"],
+    "art": "kotti"
   },
   "gorli": {
-    "name": "Görlitzer Park (Görli)",
-    "description": "The park is overgrown with luminescent moss. Mutated rabbits with too many eyes hop through the ruins of the old swimming pool. It's a place of strange beauty and sudden violence.",
+    "name": "Goerlitzer Park (Goerli)",
+    "description": "The park is overgrown with luminescent moss. Mutated rabbits with too many eyes hop through the ruins of the old swimming pool. It is a place of strange beauty and sudden violence.",
     "connections": {
       "west": "kotti",
-      "east": "oberbaumbrucke"
+      "east": "oberbaumbrucke",
+      "enter": "u_bahn_goerlitzer_bhf"
     },
-    "enemies": ["radroach"],
-    "items": ["oil"]
+    "enemies": ["radroach", "dealer_ghoul"],
+    "items": ["oil", "chems", "empty_bottle"],
+    "art": "gorli"
   },
   "oberbaumbrucke": {
-    "name": "Oberbaumbrücke",
+    "name": "Oberbaumbruecke",
     "description": "The iconic double-deck bridge. The yellow U-Bahn cars are rusted into the upper tracks. The Spree below glows with a toxic sludge. The towers have been converted into toll booths for the crossing.",
     "connections": {
-      "west": "gorli"
+      "west": "gorli",
+      "north": "east_side_gallery"
     },
     "properties": {
       "hostile": false,
       "radiation_level": 10
-    }
+    },
+    "art": "oberbaumbrucke"
   },
   "u_bahn_tunnel": {
     "name": "U-Bahn Tunnel (U1)",
-    "description": "Pitch black and echoing with the sound of dripping water and distant skittering. The smell of decay is overwhelming. Old BVG posters for concerts that never happened still cling to the walls.",
+    "description": "Pitch black and echoing with the sound of dripping water and distant skittering. This is the domain of the Schattenvolk. Old BVG posters for concerts that never happened still cling to the walls. Locals whisper of the 'Geisterzug' (Ghost Train) that passes through here at midnight.",
     "connections": {
-      "east": "mitte_ruins",
-      "north": "kotti"
+      "up": "checkpoint_charlie",
+      "north": "u_bahn_wedding",
+      "west": "u_bahn_grunewald",
+      "exit": "kotti",
+      "spree": "vault_spree",
+      "enter": "vault_spree"
     },
     "properties": {
       "safe": false,
       "radiation_level": 20
     },
+    "enemies": ["feral_ghoul_reaver"],
+    "art": "u_bahn_tunnel"
+  },
+  "tempelhof": {
+    "name": "Tempelhofer Feld",
+    "description": "A massive open airfield reclaimed by the Feld Commune. Hydroponic farms cover the runways, and the old terminal building is a hive of communal activity. Red banners flutter in the wind. 'Mother' Renate ensures everyone contributes and that no one hoards resources. The People's Square is where communal assemblies are held.",
+    "connections": {
+      "north": "kreuzberg",
+      "down": "vault_101d_entrance"
+    },
+    "properties": {
+      "hostile": false,
+      "faction": "Feld Commune"
+    },
+    "npcs": ["mother_renate", "feld_commune_guard"],
+    "items": ["ration_card", "volksruestung"],
+    "art": "tempelhof"
+  },
+  "potsdamer_platz": {
+    "name": "Potsdamer Platz Crater",
+    "description": "Ground zero of a tactical nuke, now 'Die Grube' (The Pit). A spiral road descends 40 meters to a glowing market floor where all factions trade. The metal skeletons of skyscrapers loom overhead.",
+    "connections": {
+      "north": "brandenburg_gate",
+      "west": "kadewe_ruins"
+    },
+    "properties": {
+      "radiation_level": 10,
+      "safe": true
+    },
+    "npcs": ["merchant_jakob"],
+    "art": "potsdamer_platz"
+  },
+  "east_side_gallery": {
+    "name": "East Side Gallery",
+    "description": "1.3 km of the Wall, covered in shifting graffiti and blood. The front line between the Iron Ring and Feld Commune. A Trabant is embedded in the concrete here.",
+    "connections": {
+      "north": "alexanderplatz",
+      "south": "oberbaumbrucke"
+    },
+    "enemies": ["raider"],
+    "art": "east_side_gallery"
+  },
+  "kreuzberg": {
+    "name": "Kreuzberg (SO36)",
+    "description": "The 'Little Istanbul' of the wasteland. Smells of roasted meat and ozone. Controlled by 'The Doner Mafia'. The 'SO36 Combat Arena' hosts brutal fights, and 'The Bunker' club is nearby, run by the legendary ghoul DJ Kreuzberg-Klaus.",
+    "connections": {
+      "east": "kotti",
+      "south": "tempelhof",
+      "north": "checkpoint_charlie",
+      "down": "neukolln_catacombs"
+    },
+    "npcs": ["mehmet_mutant", "patron_osman", "kreuzberg_klaus"],
+    "items": ["mutant_doener", "mezcal_del_muerte", "stimpak"],
+    "art": "kreuzberg",
+    "properties": {
+      "faction": "Doner Mafia"
+    }
+  },
+  "charlottenburg_palace": {
+    "name": "Charlottenburg Palace",
+    "description": "A baroque ruin fortified with brutalist concrete. The Iron Ring's western garrison. The 'Porcelain Chamber' inside is used for interrogations. Proper visitation forms are mandatory.",
+    "connections": {
+      "north": "tiergarten",
+      "west": "grunewald_woods"
+    },
+    "properties": {
+      "faction": "Iron Ring"
+    },
+    "npcs": ["hauptmann_richter"]
+  },
+  "spandau_citadel": {
+    "name": "Spandau Citadel",
+    "description": "A medieval fortress, now the heavily fortified headquarters of the Bundesritter. A moat of radioactive Spree water surrounds its ancient walls, guarded by laser defenses. Inside, the 'Armory' holds pre-war weapons, and the 'Round Table' is a holotape conference room.",
+    "connections": {
+      "east": "charlottenburg_palace",
+      "south": "grunewald_woods",
+      "east_low_level": "concrete_canyons"
+    },
+    "properties": {
+      "faction": "Bundesritter"
+    },
+    "npcs": ["schwertmeister", "bundesritter_knight"],
+    "items": ["bundesblech", "laser_pistol"]
+  },
+  "kadewe_ruins": {
+    "name": "KaDeWe Ruins",
+    "description": "The skeletal remains of the Department Store of the West. 'Kaufhaus-Feral-Ghouls' in tattered uniforms still wander the aisles, offering gift-wrapping services to corpses.",
+    "connections": {
+      "east": "potsdamer_platz"
+    },
+    "properties": {
+      "radiation_level": 15
+    },
+    "enemies": ["ghoul"]
+  },
+  "buergeramt": {
+    "name": "Buergeramt",
+    "description": "The administrative heart of the wasteland. Dust motes dance in the light shafts, and the waiting room is filled with skeletons still holding their ticket numbers. The Auto-Clerk 3000 at the counter demands proper paperwork.",
+    "connections": {
+      "west": "alexanderplatz"
+    },
+    "properties": {
+      "hostile": false
+    },
+    "items": ["blank_form", "stasi_file"]
+  },
+  "stasi_museum": {
+    "name": "Stasi Museum",
+    "description": "Hidden beneath the ruins of Normannenstrasse, this 30-story underground complex serves as the 'Schattenvolk' capital. It is a labyrinth of surveillance archives and cold-war relics.",
+    "connections": {
+      "west": "neukolln_catacombs",
+      "down": "stasi_deep_complex"
+    },
+    "npcs": ["the_archivist"],
+    "items": ["stasi_file", "espionage_data_key"],
+    "properties": {
+      "faction": "Schattenvolk",
+      "hostile": false
+    }
+  },
+  "stasi_deep_complex": {
+    "name": "Stasi Deep Archive Vault",
+    "description": "A sub-level of the museum, sealed off since the war. The air is freezing, and old servers are still faintly humming. This is where the highest-level state secrets are kept, potentially unlocking Act 2 main quests. Collision physics are non-existent here, replaced by temporal stasis fields.",
+    "connections": {
+      "up": "stasi_museum"
+    },
+    "properties": {
+      "radiation_level": 5,
+      "safe": true
+    },
+    "items": ["stasi_file", "espionage_data_key"]
+  },
+  "pfand_station_kotti": {
+    "name": "Pfand Station Kotti",
+    "description": "A reinforced kiosk at Kotti containing a pre-war 'Pfand' machine jury-rigged to accept radioactive glass and plastic.",
+    "connections": {
+      "exit": "kotti"
+    },
+    "properties": {
+      "safe": true
+    }
+  },
+  "vault_u7": {
+    "name": "Vault U7 (The Order Vault)",
+    "description": "Located deep under Neukoelln. A decaying ruin where 'Workers' and 'Administrators' are locked in a 200-year-old bureaucratic stalemate.",
+    "connections": {
+      "up": "neukolln_catacombs"
+    },
+    "enemies": ["vault_admin", "the_janitor"],
+    "properties": {
+      "hostile": true,
+      "radiation_level": 25
+    }
+  },
+  "vault_spree": {
+    "name": "Vault Spree Access Terminal",
+    "description": "A reinforced, seemingly safe terminal room with a specialized magnetic lock, granting access to the sealed-off section of the U-Bahn tunnels rumored to lead to the 'Spree Vault'. Fixing the magnetic lock alignment resolves collision map instability in this sector.",
+    "connections": {
+      "exit": "u_bahn_tunnel"
+    },
+    "properties": {
+      "radiation_level": 15,
+      "safe": true
+    },
+    "items": ["vault_suit", "glowing_blood_pack"]
+  },
+  "neukolln_catacombs": {
+    "name": "Neukoelln Catacombs",
+    "description": "A vast network of tunnels and basements beneath the Neukoelln district.",
+    "connections": {
+      "north": "kotti",
+      "down": "vault_u7",
+      "up": "kreuzberg",
+      "east": "stasi_museum"
+    },
     "enemies": ["feral_ghoul"]
+  },
+  "raider_fortress": {
+    "name": "The Flak Tower Fortress",
+    "description": "An imposing, windowless concrete monolith converted into a raider stronghold. Spiked barricades block the main entrance, and the sound of heavy metal drumming echoes from within. It is a monument to brute force.",
+    "connections": {
+      "south": "wedding_ghetto"
+    },
+    "enemies": ["raider", "rad_wolf"],
+    "items": ["raider_armor", "10mm_pistol", "stimpak", "beer"],
+    "npcs": ["lena_raider"],
+    "art": "raider_fortress"
+  },
+  "concrete_canyons": {
+    "name": "The Concrete Canyons",
+    "description": "A sunken street level where collapsed buildings have formed an artificial valley. Shadows are long here, and the silence is broken only by the skittering of vermin. It is a perfect ambush spot.",
+    "connections": {
+      "southeast": "wedding_ghetto",
+      "west": "spandau_citadel"
+    },
+    "enemies": ["radroach", "raider_scum"],
+    "items": ["scrap_metal", "caps"],
+    "art": "concrete_canyons"
+  },
+  "grunewald_woods": {
+    "name": "Grunewald - The Dark Forest",
+    "description": "A mutated, deadly beautiful forest where Radhunde packs roam freely. Locals call it 'The Green Hell'. Whispers of a hidden Vault entrance near the Teufelsberg ruins persist.",
+    "connections": {
+      "north": "spandau_citadel",
+      "east": "charlottenburg_palace",
+      "west": "teufelsberg_station",
+      "down": "u_bahn_grunewald",
+      "northeast": "wedding_ghetto",
+      "south": "tiergarten"
+    },
+    "enemies": ["radhund_alpha", "baumgeist", "wildschwein_koenig"],
+    "items": ["baumkuchen", "mutated_fruit", "radhund_pelt"],
+    "npcs": ["der_gaertner"],
+    "properties": {
+      "radiation_level": 20
+    }
+  },
+  "teufelsberg_station": {
+    "name": "Teufelsberg Listening Post",
+    "description": "Perched atop the artificial hill, the tattered white domes of the old listening station look like giant, cracked eggs. The area hums with static electricity and high radiation. It is rumored that the equipment inside never stopped recording.",
+    "connections": {
+      "east": "grunewald_woods"
+    },
+    "enemies": ["sniper", "yao_guai", "deathclaw_runt"],
+    "items": ["iron_ring_data", "sniper_rifle", "rad_x", "fusion_cell", "vault_b12_key"],
+    "npcs": ["aris_researcher"],
+    "art": "teufelsberg_station"
+  },
+  "u_bahn_wedding": {
+    "name": "U-Bahn Station Wedding (U6)",
+    "description": "The yellow tiles are covered in grime and dried blood. A derailed train car blocks one of the tracks, converted into a nest for things that hate the light. The air is stale and cold.",
+    "connections": {
+      "up": "wedding_ghetto",
+      "south": "u_bahn_tunnel"
+    },
+    "enemies": ["feral_ghoul", "radroach"],
+    "items": ["pfand_token", "ticket"],
+    "art": "u_bahn_wedding"
+  },
+  "u_bahn_grunewald": {
+    "name": "U-Bahn Station Onkel Toms Huette (U3)",
+    "description": "Nature has broken through the ceiling here, with roots hanging down like stalactites. The station is partially flooded with radioactive water. It feels more like a cave than a station.",
+    "connections": {
+      "up": "grunewald_woods",
+      "east": "u_bahn_tunnel"
+    },
+    "enemies": ["feral_ghoul_reaver", "feral_ghoul"],
+    "items": ["radaway", "glowing_blood_pack"],
+    "art": "u_bahn_grunewald"
+  },
+  "wedding_ghetto": {
+    "name": "Wedding (Das Ghetto)",
+    "description": "A claustrophobic maze of crumbled apartment blocks and concrete dust. Buildings are connected by improvised bridges, and the 'Knife Market' thrives amidst the chaos. The air is thick with Berlin slang.",
+    "connections": {
+      "south": "museum_island",
+      "north": "raider_fortress",
+      "northeast": "gesundbrunnen_bunker_complex",
+      "southwest": "grunewald_woods",
+      "northwest": "concrete_canyons",
+      "down": "u_bahn_wedding"
+    },
+    "enemies": ["wall_breaker_raider", "rad_wolf"],
+    "items": ["der_hammer", "improvised_explosive"],
+    "npcs": ["kreuzberg_klaus_refugee"],
+    "properties": {
+      "hostile": true,
+      "faction": "Wall Breakers"
+    }
+  },
+  "gesundbrunnen_bunker_complex": {
+    "name": "Gesundbrunnen Bunker Complex",
+    "description": "A sprawling WWII bunker system, expanded during the Cold War, now a multi-faction underground city. The 'Rabbit Warren' is a black market hub where anything can be bought or sold.",
+    "connections": {
+      "southwest": "wedding_ghetto",
+      "down": "u_bahn_gesundbrunnen"
+    },
+    "npcs": ["werkbund_merchant", "schattenvolk_listener"],
+    "items": ["stasi_file", "guild_stamp", "protectron_spare_parts"]
+  },
+  "u_bahn_gesundbrunnen": {
+    "name": "U-Bahn Station Gesundbrunnen (U8)",
+    "description": "Part of 'The Blood Line' controlled by the Wall Breakers. Every station here is an arena where control is constantly contested. The graffiti here is crude, depicting brawls and destruction.",
+    "connections": {
+      "up": "gesundbrunnen_bunker_complex",
+      "south": "u_bahn_alexanderplatz_u8"
+    },
+    "enemies": ["wall_breaker_raider", "feral_ghoul"],
+    "items": ["trabant_keys", "pretzel_grenade"],
+    "properties": {
+      "faction": "Wall Breakers",
+      "hostile": true
+    }
+  },
+  "u_bahn_alexanderplatz_u8": {
+    "name": "U-Bahn Station Alexanderplatz (U8)",
+    "description": "A contested station on the U8 line, deep under Alexanderplatz. The Wall Breakers and Iron Ring frequently clash here. The old train signs are riddled with bullet holes.",
+    "connections": {
+      "north": "u_bahn_gesundbrunnen",
+      "west": "u_bahn_museum_island_u8",
+      "up": "alexanderplatz"
+    },
+    "enemies": ["wall_breaker_raider", "iron_ring_patrol"],
+    "items": ["10mm_pistol", "ammo_10mm"]
+  },
+  "u_bahn_museum_island_u8": {
+    "name": "U-Bahn Station Museum Island (U8)",
+    "description": "A desolate station on the U8 line, partially flooded. The sounds of dripping water echo, occasionally punctuated by unsettling growls. Rumored to connect to the Museum Island vaults.",
+    "connections": {
+      "east": "u_bahn_alexanderplatz_u8",
+      "south": "u_bahn_u5_hauptbahnhof"
+    },
+    "enemies": ["spreekreb", "feral_ghoul"]
+  },
+  "u_bahn_u5_hauptbahnhof": {
+    "name": "U-Bahn Station Hauptbahnhof (U5)",
+    "description": "A heavily fortified Iron Ring military tunnel station. Power armor recharge stations are visible, and patrols are frequent. The air is cold and metallic.",
+    "connections": {
+      "north": "u_bahn_museum_island_u8",
+      "south": "u_bahn_reichstag_u5"
+    },
+    "enemies": ["iron_ring_soldier"],
+    "items": ["eisenpanzer", "mauser_laser"],
+    "properties": {
+      "faction": "Iron Ring",
+      "hostile": true
+    }
+  },
+  "u_bahn_reichstag_u5": {
+    "name": "U-Bahn Station Reichstag (U5)",
+    "description": "The command center for the Iron Ring's U5 operations. A secure, brightly lit bunker in the otherwise dark tunnels. Access is restricted to high-ranking personnel.",
+    "connections": {
+      "north": "u_bahn_u5_hauptbahnhof",
+      "up": "reichstag"
+    },
+    "enemies": ["iron_ring_officer"],
+    "items": ["ordnung_muss_sein_rifle", "permit_a38"],
+    "properties": {
+      "faction": "Iron Ring",
+      "hostile": true
+    }
+  },
+  "u_bahn_u55_phantom_vault": {
+    "name": "U-Bahn Station U55 (Phantom Vault)",
+    "description": "An eerie, seemingly abandoned U-Bahn station. Footprints appear in the dust, but no one is ever seen. The air carries faint whispers and the feeling of being watched. This is the fabled 'Phantom Vault'.",
+    "connections": {
+      "south": "u_bahn_tiergarten"
+    },
+    "enemies": [],
+    "items": ["stealth_boy_advanced", "shadow_cloak"],
+    "npcs": ["phantom_echo"]
+  },
+  "u_bahn_tiergarten": {
+    "name": "U-Bahn Station Tiergarten (U55)",
+    "description": "A partially collapsed U-Bahn station near the Tiergarten. The tunnels here are overgrown with mutated flora, and strange shadows dance in the flickering emergency lights.",
+    "connections": {
+      "north": "u_bahn_u55_phantom_vault",
+      "up": "tiergarten"
+    },
+    "enemies": ["baumgeist", "feral_ghoul"]
+  },
+  "vault_101d_entrance": {
+    "name": "Vault 101-D Entrance",
+    "description": "A heavily sealed vault entrance beneath Tempelhof. The faint sound of an automated announcement echoing 'Efficiency Score: Excellent' can be heard.",
+    "connections": {
+      "up": "tempelhof"
+    },
+    "properties": {
+      "radiation_level": 5
+    },
+    "enemies": ["automated_defense_turret"]
+  },
+  "u_bahn_goerlitzer_bhf": {
+    "name": "U-Bahn Station Goerlitzer Bahnhof (U1)",
+    "description": "A sprawling ghoul market station on the U1 line. The stench of decay and strange spices hangs heavy in the air. Shady deals are made in dimly lit corners.",
+    "connections": {
+      "exit": "gorli"
+    },
+    "enemies": ["ghoul_merchant", "feral_ghoul"],
+    "items": ["stimpak", "radaway"],
+    "npcs": ["ghoul_vendor_gori"]
+  },
+  "wedding": {
+    "name": "Wedding Center",
+    "description": "A claustrophobic maze of crumbled apartment blocks and concrete dust.",
+    "connections": {
+      "south": "museum_island",
+      "north": "raider_fortress",
+      "northeast": "gesundbrunnen_bunker_complex",
+      "west": "grunewald_woods",
+      "northwest": "concrete_canyons",
+      "down": "u_bahn_wedding"
+    },
+    "items": [],
+    "enemies": [],
+    "npcs": [],
+    "properties": {
+      "hostile": true,
+      "radiation_level": 0,
+      "safe": true
+    }
+  },
+  "grunewald": {
+    "name": "Grunewald - The Whispering Woods",
+    "description": "The trees here are twisted and wrong, their bark glowing with a faint, sick luminescence.",
+    "connections": {
+      "east": "charlottenburg_palace",
+      "west": "teufelsberg_station",
+      "down": "u_bahn_grunewald",
+      "south": "tiergarten",
+      "north": "tiergarten"
+    },
+    "items": [],
+    "enemies": [],
+    "npcs": [],
+    "properties": {
+      "radiation_level": 40,
+      "safe": true
+    }
   }
 }

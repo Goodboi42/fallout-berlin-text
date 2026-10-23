@@ -1,0 +1,286 @@
+{
+  "lena": {
+    "name": "Iron-Tooth Lena",
+    "location": "raider_fortress",
+    "initial_dialogue": "lena_greeting_1",
+    "description": "Raider Warlord, ruthless but honorable. Commands the Wall Breakers in Wedding.",
+    "faction_affiliation": "Mauerbrecher",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "aris": {
+    "name": "Dr. Aris Thorne",
+    "location": "teufelsberg_station",
+    "initial_dialogue": "aris_greeting_1",
+    "description": "Ex-Institute researcher, paranoiac but brilliant. Guards secrets within Teufelsberg.",
+    "faction_affiliation": "Independent",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Pre-War"
+  },
+  "trader_charlie": {
+    "name": "Trader Charlie",
+    "location": "checkpoint_charlie",
+    "initial_dialogue": "trader_charlie_greeting",
+    "description": "A savvy merchant operating out of Checkpoint Charlie. Neutral and focused on profit.",
+    "faction_affiliation": "Werkbund",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "scavenger_hans": {
+    "name": "Scavenger Hans",
+    "location": "mitte_ruins",
+    "initial_dialogue": "scavenger_hans_greeting",
+    "description": "A wary scavenger, always looking for valuable scrap in the ruins of Mitte. Knows the forgotten corners of the city.",
+    "faction_affiliation": "Independent",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "general_von_stahl": {
+    "name": "Generaloberst Heinrich Von Stahl",
+    "location": "reichstag",
+    "initial_dialogue": "von_stahl_greeting",
+    "description": "The cybernetic supreme commander of the Iron Ring. Obsessed with order and efficiency, more machine than man, he secretly battles the Reichstag AI controlling him.",
+    "faction_affiliation": "Eisenring",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War",
+    "initial_quest_hook": "von_stahl_quest_steel_fist"
+  },
+  "mother_renate": {
+    "name": "Mother Renate",
+    "location": "tempelhof",
+    "initial_dialogue": "mother_renate_greeting",
+    "description": "The enigmatic elder of the Feld Commune. A ghoul hiding her true nature, dedicated to rebuilding society through collectivism, even if it means ruthlessness.",
+    "faction_affiliation": "Feld Commune",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War",
+    "initial_quest_hook": "mother_renate_quest_join_collective"
+  },
+  "merchant_jakob": {
+    "name": "Jakob \"Drei-Finger\" Müller",
+    "location": "potsdamer_platz",
+    "initial_dialogue": "jakob_greeting",
+    "description": "The cunning Guildmaster of the Werkbund, known for his missing fingers and sharp business acumen. He secretly funds all sides of conflicts, profiting from war.",
+    "faction_affiliation": "Werkbund",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War",
+    "initial_quest_hook": "jakob_quest_apprentice"
+  },
+  "mehmet_mutant": {
+    "name": "Mehmet the Mutant",
+    "location": "kreuzberg",
+    "initial_dialogue": "mehmet_greeting",
+    "description": "A philosophical Super Mutant who runs a döner stand in Kreuzberg. Makes excellent döner and ponders Kant between customers.",
+    "faction_affiliation": "The Döner Mafia",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "hauptmann_richter": {
+    "name": "Hauptmann Richter",
+    "location": "charlottenburg_palace",
+    "initial_dialogue": "richter_greeting",
+    "description": "An Iron Ring officer at Charlottenburg Palace, fanatically devoted to proper procedure. He executes prisoners over paperwork errors but suffers nervous breakdowns nightly.",
+    "faction": "Eisenring",
+    "initial_quest_hook": "richter_quest_protocol"
+  },
+  "schwertmeister": {
+    "name": "Der Schwertmeister (Ernst Kaufmann)",
+    "location": "spandau_citadel",
+    "initial_dialogue": "schwertmeister_greeting",
+    "description": "The Grand Master of the Bundesritter, a tired cynic playing the role of a wise sage. He created the order to give survivors purpose and secretly plans to sell their tech.",
+    "faction_affiliation": "Bundesritter",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War",
+    "initial_quest_hook": "schwertmeister_quest_squire_trial"
+  },
+  "the_archivist": {
+    "name": "The Archivist",
+    "location": "stasi_museum",
+    "initial_dialogue": "archivist_greeting",
+    "description": "One of the ancient ghoul council members of the Schattenvolk, obsessed with recording everything. He and the Archive seek a \"ghoul plague\" to transform humanity.",
+    "faction_affiliation": "Schattenvolk",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Ancient",
+    "initial_quest_hook": "archivist_quest_archive_job"
+  },
+  "ticket_toni": {
+    "name": "Ticket-Toni",
+    "location": "bahnhof_zoo_ruins",
+    "initial_dialogue": "toni_greeting",
+    "description": "A sincere vendor at Bahnhof Zoo who sells fake U-Bahn tickets to non-existent places. Occasionally sells real ones by accident.",
+    "faction_affiliation": "Werkbund",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "oma_gertrude": {
+    "name": "Oma Gertrude",
+    "location": "kadewe_ruins",
+    "initial_dialogue": "gertrude_greeting",
+    "description": "A 150-year-old human who guards a mutated rooftop garden on the KaDeWe. Known for her Mutfruit jam and a penchant for shooting first.",
+    "faction": "None"
+  },
+  "kreuzberg_klaus": {
+    "name": "Kreuzberg-Klaus",
+    "location": "kreuzberg",
+    "initial_dialogue": "klaus_greeting",
+    "description": "A legendary ghoul who claims to have invented techno and knows a vast amount about pre-war Berlin. Runs \"The Bunker\" club and parties every Friday.",
+    "faction": "None"
+  },
+  "professor_muller": {
+    "name": "Professor Müller",
+    "location": "museum_island",
+    "initial_dialogue": "muller_greeting",
+    "description": "A feral-adjacent former curator living in the Pergamon Museum. Gives tours to imaginary groups but knows where everything is hidden, a key quest giver for artifact hunting.",
+    "faction": "None",
+    "initial_quest_hook": "muller_quest_nefertiti_heist"
+  },
+  "radio_bela": {
+    "name": "Radio Bela",
+    "location": "fernsehturm",
+    "initial_dialogue": "bela_greeting",
+    "description": "The enigmatic pirate DJ of \"Radio Freies Berlin\", broadcasting truth and music from the Fernsehturm. Hunted by the Iron Ring, protected by the people.",
+    "faction": "None",
+    "initial_quest_hook": "bela_quest_frequency_wars"
+  },
+  "der_gaertner": {
+    "name": "Der Gärtner",
+    "location": "grunewald_woods",
+    "initial_dialogue": "gartner_greeting",
+    "description": "A mysterious hermit living in the Grunewald Dark Forest. Talks to trees and can guide travelers through the dangerous woods for a story. He knows the Vault entrance location.",
+    "faction": "None"
+  },
+  "unit_247": {
+    "name": "Unit 247",
+    "location": "various",
+    "initial_dialogue": "unit_247_greeting",
+    "description": "A sentient Protectron serving as one of The Broker\"s \"Peacekeepers\". Secretly helps the player with dry humor and information.",
+    "faction": "The Broker"
+  },
+  "werkbund_merchant": {
+    "name": "Werkbund Merchant",
+    "location": "brandenburg_gate",
+    "initial_dialogue": "werkbund_merchant_greeting",
+    "description": "A bustling merchant from the Free Traders\" Guild, always looking for a deal in Brandenburg Gate market.",
+    "faction": "Werkbund"
+  },
+  "scavenger_common": {
+    "name": "Wasteland Scavenger",
+    "location": "various",
+    "initial_dialogue": "scavenger_common_greeting",
+    "description": "A common scavenger, always looking for valuable junk.",
+    "faction": "None"
+  },
+  "iron_ring_patrol": {
+    "name": "Iron Ring Patrol",
+    "location": "alexanderplatz",
+    "initial_dialogue": "iron_ring_patrol_greeting",
+    "description": "A disciplined patrol from the Iron Ring, enforcing order in the eastern districts.",
+    "faction_affiliation": "Eisenring",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "execution_vendor": {
+    "name": "Execution Market Vendor",
+    "location": "alexanderplatz",
+    "initial_dialogue": "execution_vendor_greeting",
+    "description": "A grim vendor at Alexanderplatz\"s Execution Markets, selling the belongings of the condemned.",
+    "faction_affiliation": "Independent",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "feld_commune_guard": {
+    "name": "Feld Commune Guard",
+    "location": "tempelhof",
+    "initial_dialogue": "feld_guard_greeting",
+    "description": "A loyal, if stern, member of the Red Guards, protecting Tempelhof Field.",
+    "faction_affiliation": "Feld Commune",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "bundesritter_knight": {
+    "name": "Bundesritter Knight",
+    "location": "spandau_citadel",
+    "initial_dialogue": "knight_greeting",
+    "description": "A proud Knight of the Bundesritter, clad in medieval-style power armor, upholding honor and technology.",
+    "faction": "Bundesritter"
+  },
+  "wall_breaker_raider": {
+    "name": "Wall Breaker Raider",
+    "location": "wedding_ghetto",
+    "initial_dialogue": "wall_breaker_greeting",
+    "description": "A chaotic raider from the Wall Breakers, seeking to tear down all barriers and rules.",
+    "faction_affiliation": "Mauerbrecher",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "schattenvolk_listener": {
+    "name": "Schattenvolk Listener",
+    "location": "gesundbrunnen_bunker_complex",
+    "initial_dialogue": "listener_greeting",
+    "description": "A cryptic information gatherer for the Schattenvolk, often found in the shadowy corners of Gesundbrunnen.",
+    "faction_affiliation": "Schattenvolk",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Ancient"
+  },
+  "ghoul_vendor_gori": {
+    "name": "Ghoul Vendor (Görli)",
+    "location": "u_bahn_goerlitzer_bhf",
+    "initial_dialogue": "ghoul_vendor_greeting",
+    "description": "A merchant ghoul operating in the Görlitzer Bahnhof U-Bahn market, selling scavenged goods.",
+    "faction_affiliation": "Schattenvolk",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  },
+  "phantom_echo": {
+    "name": "Phantom Echo",
+    "location": "u_bahn_u55_phantom_vault",
+    "initial_dialogue": "phantom_echo_greeting",
+    "description": "A subtle presence in the U55 Phantom Vault, a remnant of its social invisibility experiment. Rarely seen, often felt.",
+    "faction": "None"
+  },
+  "iron_ring_soldier": {
+    "name": "Iron Ring Soldier",
+    "location": "u_bahn_u5_hauptbahnhof",
+    "initial_dialogue": "iron_soldier_greeting",
+    "description": "A disciplined Iron Ring soldier, patrolling the fortified U5 Hauptbahnhof station.",
+    "faction": "Eisenring"
+  },
+  "iron_ring_officer": {
+    "name": "Iron Ring Officer",
+    "location": "u_bahn_reichstag_u5",
+    "initial_dialogue": "iron_officer_greeting",
+    "description": "A high-ranking Iron Ring officer in the U5 Reichstag command center, overseeing tunnel operations.",
+    "faction": "Eisenring"
+  },
+  "vault_admin": {
+    "name": "Vault U7 Administrator",
+    "location": "vault_u7",
+    "initial_dialogue": "vault_admin_greeting",
+    "description": "A remnant of Vault U7\"s rigid social hierarchy, still trying to enforce rules in a broken vault.",
+    "faction_affiliation": "Vault U7",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Pre-War"
+  },
+  "the_janitor": {
+    "name": "The Janitor (Vault U7)",
+    "location": "vault_u7",
+    "initial_dialogue": "janitor_greeting",
+    "description": "A mutated janitor in Vault U7, surprisingly strong and protective of his territory.",
+    "faction": "Vault U7"
+  },
+  "automated_defense_turret": {
+    "name": "Automated Defense Turret",
+    "location": "vault_101d_entrance",
+    "initial_dialogue": "turret_greeting",
+    "description": "A pre-war automated defense turret, still active and enforcing Vault 101-D\"s \"efficiency\" protocols.",
+    "faction": "Vault 101-D"
+  },
+  "patron_osman": {
+    "name": "Patron Osman",
+    "location": "kreuzberg",
+    "initial_dialogue": "patron_osman_greeting",
+    "description": "The 70-year-old leader of The Döner Mafia in Kreuzberg. Controls the district through \"döner economics\".",
+    "faction_affiliation": "The Döner Mafia",
+    "lore_tag": "NPC_CORE",
+    "origin_era": "Post-War"
+  }
+}

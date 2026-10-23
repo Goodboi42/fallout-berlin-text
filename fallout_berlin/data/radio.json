@@ -1,0 +1,58 @@
+{
+    "music": [
+        "Music plays: '99 Luftballons' - Nena (Static-filled)",
+        "Music plays: 'Heroes' - David Bowie (Echoing)",
+        "Music plays: 'Symphony No. 9' - Beethoven (Distorted)",
+        "Music plays: 'Major Tom' - Peter Schilling",
+        "Music plays: 'Rock Me Amadeus' - Falco",
+        "Music plays: 'Wind of Change' - Scorpions (Barely audible)"
+    ],
+    "banter": [
+        "DJ Voice: 'Don't go near the Wall after dark. Just... don't.'",
+        "DJ Voice: 'Fresh water available at the Market. For a price that will cost you an arm and a leg. Literally.'",
+        "DJ Voice: 'If you see a Super Mutant, run. If you see two, pray.'",
+        "DJ Voice: 'Remember, folks: The U-Bahn is not a shelter. It's a tomb.'",
+        "DJ Voice: 'Anyone found a working Geiger counter? Mine just screams constantly.'",
+        "DJ Voice: 'Berlin: The city that never sleeps, mostly because the radiation keeps you awake.'",
+        "DJ Voice: 'Rumor has it The Broker is actually a pre-war toaster with a god complex. Don't tell his bots I said that.'",
+        "DJ Voice: 'Mother Renate says eat your greens. I say, check them for teeth first.'",
+        "DJ Voice: 'General Von Stahl reminds you: Curfew is at sundown. Violators will be... re-educated.'",
+        "DJ Voice: 'Saw the Ghost Train last night. Or maybe it was just the glowing mushrooms kicking in.'"
+    ],
+    "news": {
+        "location_based": [
+            {
+                "location": "fernsehturm",
+                "message": "DJ Voice: 'Someone was spotted climbing the Fernsehturm. Crazy or suicidal? You decide.'"
+            },
+            {
+                "location": "museum_island",
+                "message": "DJ Voice: 'Reports of strange lights coming from Museum Island. The Mutants are up to something.'"
+            }
+        ],
+        "quest_based": [
+            {
+                "quest": "first_steps",
+                "status": "completed",
+                "message": "DJ Voice: 'Heard some rookie made it to Charlie alive and helped Hans. Maybe there's hope yet.'"
+            },
+            {
+                "quest": "first_steps",
+                "status": "active",
+                "message": "DJ Voice: 'If you're new to the zone, head to Checkpoint Charlie. Don't die on the way.'"
+            }
+        ],
+        "faction_based": [
+            {
+                "faction": "Iron Ring",
+                "reputation_below": -10,
+                "message": "Signal Override: 'This is the Iron Ring. The enemy of the state is being hunted. Surrender or die.'"
+            },
+            {
+                "faction": "Iron Ring",
+                "reputation_above": 10,
+                "message": "Signal Override: 'Iron Ring command to all units: Assist the Outsider. They are a friend to the cause.'"
+            }
+        ]
+    }
+}

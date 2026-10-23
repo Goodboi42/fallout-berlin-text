@@ -27,5 +27,23 @@
       "skill": "Repair",
       "min_value": 30
     }
+  },
+  "pfand_exchange_token": {
+    "name": "Exchange Empty Bottle for Pfand-Token",
+    "requirements": {
+      "empty_bottle": 1
+    },
+    "result": "pfand_token",
+    "result_quantity": 1,
+    "station": "Pfandautomat"
+  },
+  "pfand_exchange_token_premium": {
+    "name": "Exchange Pfand Bottle for Pfand-Token x5",
+    "requirements": {
+      "pfand_bottle": 1
+    },
+    "result": "pfand_token",
+    "result_quantity": 5,
+    "station": "Pfandautomat"
   }
 }

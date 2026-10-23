@@ -1,6 +1,6 @@
 # Fallout: Berlin - Text-Based Adventure
 <p align="center">
-  <img src="./fallout-berlin-cover-1.png" alt="Project cover" width="1200"/>
+  <img src="./fallout-berlin-cover-2.png" alt="Fallout: Berlin project cover" width="1200"/>
 </p>
 
 ---
@@ -46,7 +46,10 @@ The **Tiergarten** is no longer a park; it's a dense, mutated forest where **Rad
 ## 🚀 Getting Started
 
 ### Installation
-No external dependencies! Requires only **Python 3.10+**.
+Requires **Python 3.10+** and Colorama for terminal colors:
+```bash
+python -m pip install -r requirements.txt
+```
 
 ### Running the Game
 Simply run the launcher from the root directory:
@@ -54,12 +57,23 @@ Simply run the launcher from the root directory:
 python run_game.py
 ```
 
+### Running the Autoplayer
+Run a fresh, isolated 1,000-action playability test:
+```bash
+python -m fallout_berlin.autoplayer_v3
+```
+
+It audits mutual reachability across the directed location map, explores and interacts with the world, and writes a readable summary plus JSON report under `autoplayer_reports/`. The run disables autosaves and does not load or modify existing saves.
+
+Unexpected game errors are reported without automatically overwriting existing save files; unsaved progress in the current session may be lost.
+
 ---
 
 ## 🎮 Game Commands
 - **Movement**: `go north`, `s`, `east`, `w`
 - **Scavenging**: `look`, `take [item]`, `look [target]`
 - **Survival**: `inventory`, `use [item]`, `equip [weapon/armor]`
+- **Combat**: `attack`, `heal`, `flee`, `end turn` (recover action points)
 - **Interaction**: `talk [npc]`, `craft [recipe]`
 - **Management**: `stats`, `save`, `load`, `quit`
 
@@ -75,4 +89,3 @@ python run_game.py
 ---
 
 *"Fallout: Berlin — where history never stays buried."*
-

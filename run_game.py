@@ -11,10 +11,11 @@ import os
 sys.path.insert(0, os.path.dirname(__file__))
 
 try:
-    from fallout_berlin.game_engine import main
+    from fallout_berlin.improved_game_engine import main
     main()
 except ImportError as e:
-
+    import traceback
+    traceback.print_exc()
     print(f"Import error: {e}")
     print("\nMake sure you're running from the project root directory.")
     print("Try: python run_game.py")
