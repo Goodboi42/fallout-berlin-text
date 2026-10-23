@@ -84,7 +84,6 @@ Unexpected game errors are reported without automatically overwriting existing s
 *   **`fallout_berlin/`**: Core game package.
     *   **`data/`**: JSON databases for items, enemies, and locations.
     *   **`game_engine.py`**: The heart of the game loop and UI.
-*   **`docs/`**: Worldbuilding lore and technical documentation.
 
 ---
 
